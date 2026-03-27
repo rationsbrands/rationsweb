@@ -1,0 +1,32 @@
+export const SITE = {
+  name: 'Rations',
+  tagline: 'Real food. Real community.',
+  description: 'Rations is a community-first food brand focused on honest sourcing, nutritious meals, and neighborhood impact.',
+  socials: [
+    { name: 'TikTok', url: 'https://www.tiktok.com/@rations.food' },
+    { name: 'Instagram', url: 'https://instagram.com/rations.food' },
+    { name: 'Facebook', url: 'https://facebook.com/rations.food' },
+    { name: 'YouTube', url: 'https://youtube.com/@rationsfood' },
+    { name: 'X', url: 'https://x.com/rationsfood' },
+    { name: 'WhatsApp', url: 'https://wa.me/2349122058888' },
+  ],
+  contacts: {
+    email: 'rations.ng@gmail.com',
+    phone: '+2349122058888',
+    whatsapp: 'https://wa.me/2349122058888',
+    location: 'Rations, Plot 123, Railway junction, Idu Industrial District, Abuja 900001, Federal Capital Territory',
+  },
+  bank: {
+    name: 'Rations Bank',
+    accountName: 'Rations Food Ltd',
+    accountNumber: '1234567890',
+  },
+  promoMessage: '',
+  promoStart: null,
+  promoEnd: null,
+  eventMessage: '',
+  eventDate: null,
+  eventStart: null,
+  eventEnd: null,
+  visitorAlertEnabled: false,
+}

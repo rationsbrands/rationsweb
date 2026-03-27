@@ -1,0 +1,53 @@
+name: RationsWeb Production Pipeline
+
+on:
+  push:
+    branches: [ "main", "production" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './server/package-lock.json'
+        
+    - name: Install Server Dependencies
+      working-directory: ./server
+      run: npm ci
+      
+    - name: Typecheck Server
+      working-directory: ./server
+      run: npm run typecheck
+      
+    - name: Build Server
+      working-directory: ./server
+      run: npm run build
+      
+    - name: Install Admin Dependencies
+      working-directory: ./admin
+      run: npm ci
+      
+    - name: Build Admin
+      working-directory: ./admin
+      run: npm run build
+      
+    - name: Install Client Dependencies
+      working-directory: ./client
+      run: npm ci
+      
+    - name: Build Client
+      working-directory: ./client
+      run: npm run build

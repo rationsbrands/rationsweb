@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0-jammy
+    container_name: rationsweb-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - rationsweb-network
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: rationsweb-backend
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    ports:
+      - "6002:6002"
+    env_file:
+      - ./server/.env.production
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/rationsweb
+    networks:
+      - rationsweb-network
+
+volumes:
+  mongo-data:
+
+networks:
+  rationsweb-network:
+    driver: bridge
