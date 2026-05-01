@@ -103,9 +103,11 @@ export default function Community({ embed = false }) {
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6">
         <h2 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6">Community Posts</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-4">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 sm:gap-4 space-y-6 sm:space-y-4 pb-12">
           {posts.map((post) => (
-            <CommunityPostCard key={post._id} post={post} />
+            <div key={post._id} className="break-inside-avoid">
+              <CommunityPostCard post={post} />
+            </div>
           ))}
         </div>
       </section>

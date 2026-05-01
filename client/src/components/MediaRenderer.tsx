@@ -1,38 +1,40 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-export default function MediaRenderer({ url, title = '', variant = 'list', imageFallback = '' }) {
-  const parsed = useMemo(() => {
-    const u = String(url || '').trim()
-    if (!u) return { type: 'none', url: '' }
-    try {
-      const obj = new URL(u)
-      const host = obj.hostname.toLowerCase()
-      const path = obj.pathname.toLowerCase()
-      const ext = path.split('.').pop()
+export const parseMediaUrl = (url: string) => {
+  const u = String(url || '').trim()
+  if (!u) return { type: 'none', url: '' }
+  try {
+    const obj = new URL(u)
+    const host = obj.hostname.toLowerCase()
+    const path = obj.pathname.toLowerCase()
+    const ext = path.split('.').pop()
 
-      if (host.includes('youtu.be')) {
-        return { type: 'youtube', id: obj.pathname.replace('/', '') }
-      }
-      if (host.includes('youtube.com')) {
-        return { type: 'youtube', id: obj.searchParams.get('v') }
-      }
-      if (host.includes('instagram.com')) {
-        return { type: 'instagram', url: u }
-      }
-      if (host.includes('twitter.com') || host.includes('x.com')) {
-        return { type: 'x', url: u }
-      }
-      if (['jpg', 'jpeg', 'png', 'webp'].includes(ext || '')) {
-        return { type: 'image', url: u }
-      }
-      if (['mp4', 'webm', 'ogg', 'm4v'].includes(ext || '')) {
-        return { type: 'video', url: u }
-      }
-      return { type: 'link', url: u }
-    } catch {
-      return { type: 'link', url: String(url || '').trim() }
+    if (host.includes('youtu.be')) {
+      return { type: 'youtube', id: obj.pathname.replace('/', '') }
     }
-  }, [url])
+    if (host.includes('youtube.com')) {
+      return { type: 'youtube', id: obj.searchParams.get('v') }
+    }
+    if (host.includes('instagram.com')) {
+      return { type: 'instagram', url: u }
+    }
+    if (host.includes('twitter.com') || host.includes('x.com')) {
+      return { type: 'x', url: u }
+    }
+    if (['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(ext || '')) {
+      return { type: 'image', url: u }
+    }
+    if (['mp4', 'webm', 'ogg', 'm4v'].includes(ext || '')) {
+      return { type: 'video', url: u }
+    }
+    return { type: 'link', url: u }
+  } catch {
+    return { type: 'link', url: String(url || '').trim() }
+  }
+}
+
+export default function MediaRenderer({ url, title = '', variant = 'list', imageFallback = '', hideFallbackLink = false }: any) {
+  const parsed = useMemo(() => parseMediaUrl(url), [url])
 
   const igRef = useRef<HTMLDivElement | null>(null)
   const xRef = useRef<HTMLDivElement | null>(null)
@@ -65,14 +67,12 @@ export default function MediaRenderer({ url, title = '', variant = 'list', image
         if (!userPlayedRef.current) return
         if (video.paused) return
 
-        // scroll away → enter PiP
         if (!entry.isIntersecting && !document.pictureInPictureElement) {
           try {
             await (video as any).requestPictureInPicture()
           } catch {}
         }
 
-        // scroll back → exit PiP
         if (entry.isIntersecting && document.pictureInPictureElement === video) {
           try {
             await document.exitPictureInPicture()
@@ -129,13 +129,11 @@ export default function MediaRenderer({ url, title = '', variant = 'list', image
     }
   }, [parsed.type])
 
-  const ratioClass = variant === 'detail' ? 'rounded-xl' : 'rounded-b-xl'
-  const wrapPad = '56.25%'
-  const imageClasses =
-    variant === 'detail'
-      ? 'w-full h-auto rounded-xl object-cover'
-      : 'absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]'
-  const cardPadClasses = variant === 'detail' ? '' : 'w-full'
+  const isList = variant === 'list'
+  
+  // Blog format styling: Show FULL media without cropping, bounded by max-height.
+  const maxHClass = isList ? 'max-h-[400px]' : 'max-h-[75vh]'
+  const mediaClasses = `w-full h-auto ${maxHClass} object-contain transition-transform duration-500`
 
   /* -------------------------------------------
      RENDER
@@ -143,10 +141,13 @@ export default function MediaRenderer({ url, title = '', variant = 'list', image
   if (parsed.type === 'none') {
     if (imageFallback) {
       return (
-        <div className={`relative overflow-hidden ${ratioClass}`}>
-          <div className={cardPadClasses} style={{ paddingTop: '75%' }}>
-            <img src={imageFallback} alt={title} className={imageClasses} />
-          </div>
+        <div className="w-full overflow-hidden bg-slate-100 dark:bg-[#0C1E22] flex items-center justify-center">
+          <img 
+            src={imageFallback} 
+            alt={title} 
+            className={mediaClasses}
+            loading="lazy"
+          />
         </div>
       )
     }
@@ -156,7 +157,7 @@ export default function MediaRenderer({ url, title = '', variant = 'list', image
   /* YouTube (PiP via iframe) */
   if (parsed.type === 'youtube' && parsed.id) {
     return (
-      <div className={`relative w-full overflow-hidden ${ratioClass}`} style={{ paddingTop: wrapPad }}>
+      <div className="relative w-full overflow-hidden bg-black" style={{ paddingTop: '56.25%' }}>
         <iframe
           src={`https://www.youtube.com/embed/${parsed.id}`}
           title={title || 'YouTube video'}
@@ -171,13 +172,14 @@ export default function MediaRenderer({ url, title = '', variant = 'list', image
   /* Instagram */
   if (parsed.type === 'instagram') {
     return (
-      <div ref={igRef}>
+      <div ref={igRef} className="w-full flex justify-center bg-white dark:bg-slate-900 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800">
         <blockquote
           className="instagram-media"
           data-instgrm-permalink={parsed.url}
           data-instgrm-version="14"
+          style={{ margin: 0, minWidth: '100%' }}
         />
-        {igFallback && (
+        {igFallback && !hideFallbackLink && (
           <a href={parsed.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm underline">
             Open on Instagram
           </a>
@@ -188,18 +190,27 @@ export default function MediaRenderer({ url, title = '', variant = 'list', image
 
   /* Image */
   if (parsed.type === 'image') {
-    return <img src={parsed.url} alt={title} className="w-full object-cover rounded-b-xl" />
+    return (
+      <div className="w-full overflow-hidden bg-slate-100 dark:bg-[#0C1E22] flex items-center justify-center">
+        <img 
+          src={parsed.url} 
+          alt={title} 
+          className={mediaClasses}
+          loading="lazy"
+        />
+      </div>
+    )
   }
 
   /* VIDEO — native PiP + auto on scroll */
   if (parsed.type === 'video') {
     return (
-      <div ref={wrapperRef} className={`relative w-full overflow-hidden ${ratioClass}`} style={{ paddingTop: wrapPad }}>
+      <div ref={wrapperRef} className="relative w-full bg-black flex items-center justify-center">
         <video
           ref={videoRef}
           controls
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className={mediaClasses}
         >
           <source src={parsed.url} />
         </video>
@@ -210,11 +221,11 @@ export default function MediaRenderer({ url, title = '', variant = 'list', image
   /* X / Twitter */
   if (parsed.type === 'x') {
     return (
-      <div ref={xRef}>
+      <div ref={xRef} className="w-full flex justify-center overflow-hidden rounded-xl bg-white dark:bg-slate-900">
         <blockquote className="twitter-tweet">
           <a href={parsed.url}>View on X</a>
         </blockquote>
-        {xFallback && (
+        {xFallback && !hideFallbackLink && (
           <a href={parsed.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm underline">
             Open on X
           </a>
@@ -224,6 +235,7 @@ export default function MediaRenderer({ url, title = '', variant = 'list', image
   }
 
   /* Fallback link (always clickable) */
+  if (hideFallbackLink) return null
   return (
     <a href={parsed.url} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-sm underline">
       {parsed.url}

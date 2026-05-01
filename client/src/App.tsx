@@ -21,7 +21,7 @@ function App() {
   const [settingsLoaded, setSettingsLoaded] = useState(false)
   useEffect(() => {
     // Fetch site settings and hydrate client-side constants
-    api.get('/settings')
+    api.get('/public/settings')
       .then(res => {
         const s = res.data?.data || {}
         
@@ -56,7 +56,7 @@ function App() {
         if (typeof s.visitorAlertEnabled !== 'undefined') SITE.visitorAlertEnabled = s.visitorAlertEnabled
 
         try {
-          const once = sessionStorage.getItem('hideVisitorAlert') === '1'
+          const once = sessionStorage.getItem('hideVisitorAlert_v2') === '1'
           setHideVisitorAlert(once)
         } catch {}
         
@@ -65,14 +65,10 @@ function App() {
         
         // Optionally fetch a community post to show as a visitor alert
         if (!hideVisitorAlert && SITE.visitorAlertEnabled !== false) {
-          api.get('/community')
+          api.get('/public/community')
             .then(r => {
               const list = Array.isArray(r.data?.data) ? r.data.data : []
               const nowTs = Date.now()
-              const isTagMatch = (t: any) => {
-                const x = String(t || '').toLowerCase()
-                return x === 'promo' || x === 'promos' || x === 'event' || x === 'events' || x === 'announcement' || x === 'anouncement'
-              }
               const inWindow = (p: any) => {
                 const start = p.alertStart ? new Date(p.alertStart).getTime() : null
                 const end = p.alertEnd ? new Date(p.alertEnd).getTime() : null
@@ -81,7 +77,7 @@ function App() {
                 if (!start && end) return nowTs <= end
                 return true
               }
-              const candidate = list.find((p: any) => Boolean(p.alertEnabled) && isTagMatch(p.tag) && inWindow(p))
+              const candidate = list.find((p: any) => Boolean(p.alertEnabled) && inWindow(p))
               if (candidate) setVisitorAlertPost(candidate)
             })
             .catch(() => {})
@@ -89,21 +85,53 @@ function App() {
       })
       .catch(() => {})
   }, [])
+  const [showDelayedAlert, setShowDelayedAlert] = useState(false)
+
+  useEffect(() => {
+    if (visitorAlertPost && !hideVisitorAlert) {
+      const timer = setTimeout(() => setShowDelayedAlert(true), 2500)
+      return () => clearTimeout(timer)
+    }
+  }, [visitorAlertPost, hideVisitorAlert])
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
       <Navbar />
-      {visitorAlertPost && !hideVisitorAlert && (
-        <div className="fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="absolute inset-0 flex items-center justify-center p-4">
-            <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl w-full max-w-md p-4">
-              <div className="text-xs uppercase tracking-wide text-[#0C1E22]/70 dark:text-white/70">{visitorAlertPost.tag}</div>
-              <div className="text-lg font-bold text-[#0C1E22] dark:text-white mt-1">{visitorAlertPost.title}</div>
-              <div className="text-sm text-slate-700 dark:text-slate-200 mt-2">{visitorAlertPost.content}</div>
-              <div className="mt-4 flex items-center justify-end gap-2">
-                <a href={`/community/${visitorAlertPost._id}`} className="px-4 py-2 rounded-full bg-[#0C1E22] dark:bg-white text-white dark:text-[#0C1E22] text-sm font-medium">View</a>
-                <button className="px-4 py-2 rounded-full border text-sm" onClick={() => { setHideVisitorAlert(true); try { sessionStorage.setItem('hideVisitorAlert', '1') } catch {} }}>Dismiss</button>
-              </div>
+      
+      {/* Non-blocking Toast Alert */}
+      {visitorAlertPost && !hideVisitorAlert && showDelayedAlert && (
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[100] animate-in slide-in-from-bottom-5 fade-in duration-500">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl w-[calc(100vw-2rem)] sm:w-80 overflow-hidden flex flex-col">
+            
+            {/* Header/Close */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-ration-green dark:text-ration-green flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-ration-green animate-pulse"></span>
+                {visitorAlertPost.tag || 'Alert'}
+              </span>
+              <button 
+                onClick={() => { setHideVisitorAlert(true); try { sessionStorage.setItem('hideVisitorAlert_v2', '1') } catch {} }}
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors p-1 -mr-1"
+                aria-label="Dismiss alert"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-4">
+              <h3 className="text-base font-bold text-[#0C1E22] dark:text-white leading-tight mb-1.5 line-clamp-2">
+                {visitorAlertPost.title}
+              </h3>
+              <p className="text-[13px] text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 leading-relaxed">
+                {visitorAlertPost.content}
+              </p>
+              <a 
+                href={`/community/${visitorAlertPost._id}`} 
+                className="flex items-center justify-center w-full px-4 py-2 bg-ration-yellow text-ration-dark hover:bg-[#e6a100] rounded-xl text-[13px] font-bold transition-colors shadow-sm"
+              >
+                Learn More
+              </a>
             </div>
           </div>
         </div>

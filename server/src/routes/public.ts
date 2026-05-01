@@ -172,6 +172,30 @@ router.post('/community/:id/report', async (req, res) => {
   }
 })
 
+router.post('/community/:id/like', async (req, res) => {
+  try {
+    const post = await CommunityPost.findOne({ _id: req.params.id, deleted: false })
+    if (!post) return res.status(404).json({ message: 'Post not found' })
+    post.likes = (post.likes || 0) + 1
+    await post.save()
+    res.status(200).json({ success: true, data: { likes: post.likes } })
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' })
+  }
+})
+
+router.post('/community/:id/unlike', async (req, res) => {
+  try {
+    const post = await CommunityPost.findOne({ _id: req.params.id, deleted: false })
+    if (!post) return res.status(404).json({ message: 'Post not found' })
+    post.likes = Math.max(0, (post.likes || 0) - 1)
+    await post.save()
+    res.status(200).json({ success: true, data: { likes: post.likes } })
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' })
+  }
+})
+
 router.get('/content', async (req, res) => {
   try {
     // Placeholder for content/banners if not using Settings
