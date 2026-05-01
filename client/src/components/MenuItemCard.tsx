@@ -62,22 +62,22 @@ export default function MenuItemCard({ item }: any) {
 
       <div className="p-2 sm:p-4 flex flex-col gap-1 sm:gap-2 flex-1">
         <div className="flex justify-between items-start gap-1 sm:gap-2">
-          <div>
-            <h3 className="text-sm sm:text-base font-semibold text-slate-800 dark:text-slate-100 leading-tight">{item.name}</h3>
-            <p className="text-[10px] sm:text-xs text-red-700">{item.category}</p>
+          <div className="min-w-0">
+            <h3 className="text-sm sm:text-base font-semibold text-slate-800 dark:text-slate-100 leading-tight break-words">{item.name}</h3>
+            <p className="text-[10px] sm:text-xs text-red-700 truncate">{item.category}</p>
           </div>
-          <div className="flex flex-col items-end">
+          <div className="flex flex-col items-end shrink-0 ml-1">
             {item.promoActive && item.effectivePrice !== undefined && item.effectivePrice !== item.price ? (
               <>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] sm:text-xs text-slate-400 line-through">
+                <div className="flex flex-col sm:flex-row items-end sm:items-center gap-0 sm:gap-1.5">
+                  <span className="text-[10px] sm:text-xs text-slate-400 line-through whitespace-nowrap">
                     ₦{item.price.toLocaleString()}
                   </span>
                   <span className="text-xs sm:text-sm font-semibold text-ration-green whitespace-nowrap">
                     ₦{effectivePrice.toLocaleString()}
                   </span>
                 </div>
-                <div className="text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-sm bg-amber-100 text-amber-700 mt-0.5 inline-block">
+                <div className="text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-sm bg-amber-100 text-amber-700 mt-0.5 inline-block whitespace-nowrap">
                   PROMO
                 </div>
               </>
