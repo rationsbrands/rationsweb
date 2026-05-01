@@ -1,4 +1,13 @@
 {
+  "name": "rationsweb-monorepo",
+  "private": true,
+  "scripts": {
+    "build:server": "cd server && npm run build",
+    "build:client": "cd client && npm run build",
+    "build:admin": "cd admin && npm run build",
+    "build:all": "npm run build:server && npm run build:client && npm run build:admin",
+    "install:all": "cd server && npm install && cd ../client && npm install && cd ../admin && npm install"
+  },
   "dependencies": {
     "embla-carousel-react": "^8.6.0"
   }
