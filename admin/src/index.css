@@ -5,3 +5,9 @@
 body {
   @apply bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100;
 }
+
+@layer base {
+  input, textarea, select {
+    @apply dark:bg-slate-900 dark:text-white dark:border-slate-700;
+  }
+}
