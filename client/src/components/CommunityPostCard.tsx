@@ -92,7 +92,7 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
               {author.charAt(0).toUpperCase()}
             </div>
             <div className="flex-1">
-              <div className="text-base sm:text-sm font-semibold text-[#0C1E22] leading-tight">{author}</div>
+              <div className="text-base sm:text-sm font-semibold text-[#0C1E22] dark:text-white leading-tight">{author}</div>
               <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{when}</div>
             </div>
             {post.tag && (
@@ -110,7 +110,7 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
           </div>
 
           <div className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed max-w-[70ch]">
-            <h3 className="text-base sm:text-lg font-bold text-[#0C1E22] mb-1">
+            <h3 className="text-base sm:text-lg font-bold text-[#0C1E22] dark:text-white mb-1">
               {post.title}
             </h3>
 

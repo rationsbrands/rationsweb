@@ -56,9 +56,10 @@ export const createCommunityPostSchema = z.object({
   alertEnabled: z.boolean().optional(),
   alertStart: z.string().datetime().optional().or(z.date().optional()),
   alertEnd: z.string().datetime().optional().or(z.date().optional()),
-}).strict()
+  source: z.any().optional(),
+})
 
-export const updateCommunityPostSchema = createCommunityPostSchema.partial().strict()
+export const updateCommunityPostSchema = createCommunityPostSchema.partial()
 
 // 4. Order Schemas
 export const createPosOrderSchema = z.object({

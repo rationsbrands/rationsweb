@@ -92,7 +92,7 @@ export default function CommunityPostPage() {
     <article className="space-y-3 sm:space-y-4">
       <div className="flex items-center gap-2">
         <div className="flex-1">
-          <div className="text-sm font-semibold text-[#0C1E22]">
+          <div className="text-sm font-semibold text-[#0C1E22] dark:text-white">
             {post.createdBy?.name || 'Rations Community'}
           </div>
           <div className="text-xs text-slate-500 dark:text-slate-400">
@@ -102,7 +102,7 @@ export default function CommunityPostPage() {
         <div className="text-[10px] uppercase tracking-wide text-slate-500 dark:text-slate-400">{post.tag}</div>
       </div>
 
-      <h1 className="text-xl sm:text-3xl font-bold text-[#0C1E22]">{post.title}</h1>
+      <h1 className="text-xl sm:text-3xl font-bold text-[#0C1E22] dark:text-white">{post.title}</h1>
 
       <MediaRenderer
         url={post.mediaUrl}

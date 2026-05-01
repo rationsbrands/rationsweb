@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { ShoppingCart } from 'lucide-react'
 import CartDrawer from './CartDrawer'
 import logo from '../assets/logo.png'
+import logoDark from '../assets/logo-dark.png'
 import api from '../api/api'
 import { SITE } from '../config/site'
 
@@ -57,7 +58,8 @@ export default function Navbar() {
         <nav className="max-w-6xl mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between gap-2 sm:gap-3">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Rations Logo" className="h-7 w-7 sm:h-8 sm:w-8 object-contain" />
+            <img src={logo} alt="Rations Logo" className="h-7 w-7 sm:h-8 sm:w-8 object-contain dark:hidden" />
+            <img src={logoDark} alt="Rations Logo Dark" className="hidden h-7 w-7 sm:h-8 sm:w-8 object-contain dark:block" />
             <span className="font-semibold text-base sm:text-lg dark:text-white">{SITE.name}</span>
           </Link>
 
@@ -75,7 +77,7 @@ export default function Navbar() {
             
             <Link 
               to="/menu"
-              className="hidden md:block px-5 py-2 rounded-full bg-[#0C1E22] text-white text-sm font-semibold hover:shadow-lg transition-all active:scale-95"
+              className="hidden md:block px-5 py-2 rounded-full bg-[#0C1E22] dark:bg-white text-white dark:text-[#0C1E22] text-sm font-semibold hover:shadow-lg transition-all active:scale-95"
             >
               Order Now
             </Link>
@@ -88,7 +90,7 @@ export default function Navbar() {
                 className="relative p-2 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800"
                 aria-label="Open cart"
               >
-                <ShoppingCart className="w-5 h-5 text-[#0C1E22]" />
+                <ShoppingCart className="w-5 h-5 text-[#0C1E22] dark:text-white" />
                 {hasCart && (
                   <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] rounded-full bg-red-600 text-white text-[10px] flex items-center justify-center font-bold">
                     {cartCount}
@@ -101,7 +103,7 @@ export default function Navbar() {
             
             {/* Mobile hamburger - separate from cart */}
             <button
-              className="md:hidden p-2 rounded-md border text-[#0C1E22]"
+              className="md:hidden p-2 rounded-md border text-[#0C1E22] dark:text-white dark:border-slate-700"
               onClick={() => setOpen(!open)}
               aria-label="Toggle menu"
             >
@@ -113,7 +115,7 @@ export default function Navbar() {
         {banner && (
           <div className="border-t bg-white dark:bg-slate-900/95">
             <div className="max-w-6xl mx-auto px-4 py-2 text-xs flex items-center gap-2">
-              <span className={banner.type==='promo' ? 'text-red-600 font-semibold' : 'text-[#0C1E22] font-semibold'}>
+              <span className={banner.type==='promo' ? 'text-red-600 dark:text-red-400 font-semibold' : 'text-[#0C1E22] dark:text-white font-semibold'}>
                 {banner.type === 'promo' ? 'Promo' : 'Event'}
               </span>
               <span className="text-slate-700 dark:text-slate-200">{banner.message}</span>

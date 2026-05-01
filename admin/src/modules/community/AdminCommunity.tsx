@@ -82,8 +82,11 @@ export default function AdminCommunity() {
     }
     const payload = { ...form }
     if (!payload.alertEnabled) {
-      payload.alertStart = ''
-      payload.alertEnd = ''
+      delete payload.alertStart
+      delete payload.alertEnd
+    } else {
+      if (!payload.alertStart) delete payload.alertStart
+      if (!payload.alertEnd) delete payload.alertEnd
     }
     
     // Handle Instagram source manually for testing/admin creation
@@ -98,6 +101,7 @@ export default function AdminCommunity() {
       payload.source = null // Clear source if unchecked
     }
     delete payload.isInstagram
+    delete payload.__newTag
 
     if (editingId) {
       await api.put(`/admin/community/${editingId}`, payload)
@@ -266,7 +270,7 @@ export default function AdminCommunity() {
           {posts.map(post => (
             <div key={post._id} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-3 flex justify-between items-start">
               <div>
-                <div className="text-xs text-primary-600 uppercase">{post.tag}</div>
+                <div className="text-xs text-primary-600 dark:text-primary-400 uppercase">{post.tag}</div>
                 <div className="font-semibold">{post.title}</div>
                 <div className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1">{post.content}</div>
               </div>

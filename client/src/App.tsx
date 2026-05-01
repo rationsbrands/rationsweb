@@ -97,11 +97,11 @@ function App() {
           <div className="absolute inset-0 bg-black/40" />
           <div className="absolute inset-0 flex items-center justify-center p-4">
             <div className="bg-white dark:bg-slate-900 rounded-xl shadow-xl w-full max-w-md p-4">
-              <div className="text-xs uppercase tracking-wide text-[#0C1E22]/70">{visitorAlertPost.tag}</div>
-              <div className="text-lg font-bold text-[#0C1E22] mt-1">{visitorAlertPost.title}</div>
+              <div className="text-xs uppercase tracking-wide text-[#0C1E22]/70 dark:text-white/70">{visitorAlertPost.tag}</div>
+              <div className="text-lg font-bold text-[#0C1E22] dark:text-white mt-1">{visitorAlertPost.title}</div>
               <div className="text-sm text-slate-700 dark:text-slate-200 mt-2">{visitorAlertPost.content}</div>
               <div className="mt-4 flex items-center justify-end gap-2">
-                <a href={`/community/${visitorAlertPost._id}`} className="px-4 py-2 rounded-full bg-[#0C1E22] text-white text-sm">View</a>
+                <a href={`/community/${visitorAlertPost._id}`} className="px-4 py-2 rounded-full bg-[#0C1E22] dark:bg-white text-white dark:text-[#0C1E22] text-sm font-medium">View</a>
                 <button className="px-4 py-2 rounded-full border text-sm" onClick={() => { setHideVisitorAlert(true); try { sessionStorage.setItem('hideVisitorAlert', '1') } catch {} }}>Dismiss</button>
               </div>
             </div>
