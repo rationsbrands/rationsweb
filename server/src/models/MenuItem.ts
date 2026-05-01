@@ -15,6 +15,12 @@ const menuItemSchema = new Schema(
     trackStock: { type: Boolean, default: false },
     stockQuantity: { type: Number, default: 0 },
     lowStockThreshold: { type: Number, default: 5 },
+    promoActive: { type: Boolean, default: false },
+    promoType: { type: String, enum: ['percentage', 'fixed_price'], default: null },
+    promoValue: { type: Number, default: null },
+    promoStart: { type: Date, default: null },
+    promoEnd: { type: Date, default: null },
+    promoLabel: { type: String, default: null },
     archived: { type: Boolean, default: false },
     externalId: { type: String, sparse: true }, // Platform ID
   },

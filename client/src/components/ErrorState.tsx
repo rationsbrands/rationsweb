@@ -19,7 +19,7 @@ export default function ErrorState({ title, message, onRetry }: Props) {
       {onRetry && (
         <button
           onClick={onRetry}
-          className="mt-4 px-4 py-2 bg-white border border-red-300 rounded-lg text-xs font-medium text-red-700 hover:bg-red-50"
+          className="mt-4 px-4 py-2 bg-white dark:bg-slate-900 border border-red-300 rounded-lg text-xs font-medium text-red-700 hover:bg-red-50"
         >
           Retry
         </button>

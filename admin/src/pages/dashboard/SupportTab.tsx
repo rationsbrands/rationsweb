@@ -12,10 +12,10 @@ export default function SupportTab() {
   }
 
   return (
-    <div className="bg-white border border-slate-100 rounded-xl p-4 space-y-3">
+    <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 space-y-3">
       <h2 className="text-lg font-semibold">Support</h2>
 
-      <div className="rounded border border-slate-200 p-3 text-sm space-y-2">
+      <div className="rounded border border-slate-200 dark:border-slate-700 p-3 text-sm space-y-2">
         <div className="font-semibold">Contact</div>
         <div>
           Email: <a href={`mailto:${email}`} className="underline">{email}</a>

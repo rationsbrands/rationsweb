@@ -9,7 +9,7 @@ import { SITE } from '../config/site'
 
 const navLinkClasses = ({ isActive }: any) =>
   `px-3 py-1 text-sm font-medium rounded-full transition-colors ${
-    isActive ? ' text-[#12343A] text-xl dark:text-ration-yellow' : 'text-slate-700 hover:text-xl dark:text-slate-200'
+    isActive ? ' text-[#12343A] text-xl dark:text-ration-yellow' : 'text-slate-700 dark:text-slate-200 hover:text-xl dark:text-slate-200'
   }`
 
 export default function Navbar() {
@@ -85,7 +85,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={handleOpenCart}
-                className="relative p-2 rounded-full border border-slate-300 bg-white hover:bg-slate-100"
+                className="relative p-2 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800"
                 aria-label="Open cart"
               >
                 <ShoppingCart className="w-5 h-5 text-[#0C1E22]" />
@@ -111,24 +111,24 @@ export default function Navbar() {
         </nav>
 
         {banner && (
-          <div className="border-t bg-white/95">
+          <div className="border-t bg-white dark:bg-slate-900/95">
             <div className="max-w-6xl mx-auto px-4 py-2 text-xs flex items-center gap-2">
               <span className={banner.type==='promo' ? 'text-red-600 font-semibold' : 'text-[#0C1E22] font-semibold'}>
                 {banner.type === 'promo' ? 'Promo' : 'Event'}
               </span>
-              <span className="text-slate-700">{banner.message}</span>
+              <span className="text-slate-700 dark:text-slate-200">{banner.message}</span>
               {banner.type === 'promo' && banner.end && (
-                <span className="ml-auto text-slate-500">Ends: {new Date(banner.end).toLocaleString()}</span>
+                <span className="ml-auto text-slate-500 dark:text-slate-400">Ends: {new Date(banner.end).toLocaleString()}</span>
               )}
               {banner.type === 'event' && banner.date && (
-                <span className="ml-auto text-slate-500">Date: {new Date(banner.date).toLocaleString()}</span>
+                <span className="ml-auto text-slate-500 dark:text-slate-400">Date: {new Date(banner.date).toLocaleString()}</span>
               )}
             </div>
           </div>
         )}
         {/* Mobile dropdown menu */}
         {open && (
-          <div className="md:hidden border-t bg-white px-4 py-3 flex flex-col gap-2">
+          <div className="md:hidden border-t bg-white dark:bg-slate-900 px-4 py-3 flex flex-col gap-2">
             <NavLink to="/" onClick={() => setOpen(false)} className={navLinkClasses}>Home</NavLink>
             <NavLink to="/menu" onClick={() => setOpen(false)} className={navLinkClasses}>Menu</NavLink>
             <NavLink to="/community" onClick={() => setOpen(false)} className={navLinkClasses}>Community</NavLink>

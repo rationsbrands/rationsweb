@@ -85,7 +85,7 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
       aria-label={`Open post: ${post.title}`}
       className="group block"
     >
-      <article className="bg-white border border-slate-100 rounded-2xl sm:rounded-xl shadow-sm sm:shadow-sm hover:shadow-md transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FDCD2F]/60 h-full flex flex-col">
+      <article className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl sm:rounded-xl shadow-sm sm:shadow-sm hover:shadow-md transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FDCD2F]/60 h-full flex flex-col">
         <div className="p-4 sm:p-4 flex-1">
           <div className="flex items-center gap-3 mb-3 sm:mb-3">
             <div className="h-10 w-10 sm:h-auto sm:w-auto rounded-full bg-ration-yellow/20 flex items-center justify-center text-ration-dark font-bold text-sm sm:hidden">
@@ -93,10 +93,10 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
             </div>
             <div className="flex-1">
               <div className="text-base sm:text-sm font-semibold text-[#0C1E22] leading-tight">{author}</div>
-              <div className="text-xs text-slate-500 mt-0.5">{when}</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{when}</div>
             </div>
             {post.tag && (
-              <div className="text-[10px] uppercase tracking-wide text-slate-500 bg-slate-100 px-2 py-1 rounded-full">
+              <div className="text-[10px] uppercase tracking-wide text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-full">
                 {post.tag}
               </div>
             )}
@@ -109,12 +109,12 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
             )}
           </div>
 
-          <div className="text-sm text-slate-700 leading-relaxed max-w-[70ch]">
+          <div className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed max-w-[70ch]">
             <h3 className="text-base sm:text-lg font-bold text-[#0C1E22] mb-1">
               {post.title}
             </h3>
 
-            <p className="text-slate-600 line-clamp-3 break-words leading-relaxed">
+            <p className="text-slate-600 dark:text-slate-300 line-clamp-3 break-words leading-relaxed">
               {linkify(bodyText)}
             </p>
           </div>
@@ -128,7 +128,7 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
         />
 
         {post.mediaUrl && post.mediaTitle && (
-          <div className="px-4 sm:px-4 py-3 sm:py-2 text-xs text-slate-500 border-t border-slate-50">
+          <div className="px-4 sm:px-4 py-3 sm:py-2 text-xs text-slate-500 dark:text-slate-400 border-t border-slate-50">
             {post.mediaTitle}
           </div>
         )}

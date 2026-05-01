@@ -18,8 +18,8 @@ export default function ModuleGuard({ module, redirectTo = '/dashboard/admin', c
   if (!hasModule(module)) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-8">
-        <h1 className="text-4xl font-bold text-slate-800 mb-4">404</h1>
-        <p className="text-lg text-slate-600">Page not found or you do not have access to this module.</p>
+        <h1 className="text-4xl font-bold text-slate-800 dark:text-slate-100 mb-4">404</h1>
+        <p className="text-lg text-slate-600 dark:text-slate-300">Page not found or you do not have access to this module.</p>
         <a href="/" className="mt-6 px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors">
           Go Home
         </a>

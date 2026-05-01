@@ -51,7 +51,7 @@ export default function Home() {
         <div className="grid items-center gap-6 sm:gap-10 md:grid-cols-2">
           <div>
             <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight">About Rations</h2>
-            <p className="mt-3 sm:mt-4 text-sm sm:text-lg leading-relaxed text-gray-700">
+            <p className="mt-3 sm:mt-4 text-sm sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
               Food is more than fuel, it's connection. Rations is a growing community dedicated to real food, healthy living, and celebrating local flavors.
               We keep it simple, affordable, and nourishing for everyone.
             </p>
@@ -83,9 +83,9 @@ export default function Home() {
         <h2 className="text-xl sm:text-3xl font-bold text-center mb-4 sm:mb-8">Why Rations?</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-8">
           {whyRations.map((reason) => (
-            <div key={reason.title} className="bg-white p-2 sm:p-6 rounded-lg shadow-md">
+            <div key={reason.title} className="bg-white dark:bg-slate-900 p-2 sm:p-6 rounded-lg shadow-md">
               <h3 className="text-sm sm:text-xl font-semibold text-brand-dark">{reason.title}</h3>
-              <p className="mt-1 sm:mt-2 text-[10px] sm:text-base text-gray-600">{reason.description}</p>
+              <p className="mt-1 sm:mt-2 text-[10px] sm:text-base text-gray-600 dark:text-gray-400">{reason.description}</p>
             </div>
           ))}
         </div>

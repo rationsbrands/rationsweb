@@ -62,6 +62,7 @@ const settingsSchema = new Schema(
       menuEnabled: { type: Boolean, default: true },
       communityEnabled: { type: Boolean, default: true },
       orderingEnabled: { type: Boolean, default: true },
+      promoPricingEnabled: { type: Boolean, default: false },
     },
 
     // Platform Integration Toggles

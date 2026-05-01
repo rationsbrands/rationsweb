@@ -66,7 +66,7 @@ export default function Dashboard() {
     else setActive('profile')
   }, [location.pathname])
 
-  if (loading) return <p className="text-sm text-slate-600">Loading dashboard...</p>
+  if (loading) return <p className="text-sm text-slate-600 dark:text-slate-300">Loading dashboard...</p>
   if (!user) return null
 
   return (
@@ -74,26 +74,26 @@ export default function Dashboard() {
       {/* Mobile card navigation */}
       <div className="md:hidden space-y-3">
         <div className="grid grid-cols-1 gap-3">
-          <Link to="/dashboard/profile" className="block rounded-xl border border-slate-200 bg-white p-4">
+          <Link to="/dashboard/profile" className="block rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4">
             <div className="font-semibold">Manage Profile</div>
-            <div className="text-sm text-slate-600">Update your details</div>
+            <div className="text-sm text-slate-600 dark:text-slate-300">Update your details</div>
           </Link>
-          <Link to="/dashboard/orders" className="block rounded-xl border border-slate-200 bg-white p-4">
+          <Link to="/dashboard/orders" className="block rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4">
             <div className="font-semibold">My Orders</div>
-            <div className="text-sm text-slate-600">View your order history</div>
+            <div className="text-sm text-slate-600 dark:text-slate-300">View your order history</div>
           </Link>
-          <Link to="/dashboard/security" className="block rounded-xl border border-slate-200 bg-white p-4">
+          <Link to="/dashboard/security" className="block rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4">
             <div className="font-semibold">Security</div>
-            <div className="text-sm text-slate-600">Change your password</div>
+            <div className="text-sm text-slate-600 dark:text-slate-300">Change your password</div>
           </Link>
         </div>
       </div>
       <aside className="hidden md:block md:col-span-1">
-        <div className="bg-white border border-slate-100 rounded-xl p-3 space-y-2">
-          <button className={`w-full text-left px-4 py-2 rounded-lg ${active==='profile'?'bg-slate-100':''} min-h-[44px] transition-colors`} onClick={()=>navigate('/dashboard/profile')}>Profile</button>
-          <button className={`w-full text-left px-4 py-2 rounded-lg ${active==='orders'?'bg-slate-100':''} min-h-[44px] transition-colors`} onClick={()=>navigate('/dashboard/orders')}>Orders</button>
-          <button className={`w-full text-left px-4 py-2 rounded-lg ${active==='security'?'bg-slate-100':''} min-h-[44px] transition-colors`} onClick={()=>navigate('/dashboard/security')}>Security</button>
-          <button className={`w-full text-left px-4 py-2 rounded-lg ${active==='support'?'bg-slate-100':''} min-h-[44px] transition-colors`} onClick={()=>setActive('support')}>Support</button>
+        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-3 space-y-2">
+          <button className={`w-full text-left px-4 py-2 rounded-lg ${active==='profile'?'bg-slate-100 dark:bg-slate-800':''} min-h-[44px] transition-colors`} onClick={()=>navigate('/dashboard/profile')}>Profile</button>
+          <button className={`w-full text-left px-4 py-2 rounded-lg ${active==='orders'?'bg-slate-100 dark:bg-slate-800':''} min-h-[44px] transition-colors`} onClick={()=>navigate('/dashboard/orders')}>Orders</button>
+          <button className={`w-full text-left px-4 py-2 rounded-lg ${active==='security'?'bg-slate-100 dark:bg-slate-800':''} min-h-[44px] transition-colors`} onClick={()=>navigate('/dashboard/security')}>Security</button>
+          <button className={`w-full text-left px-4 py-2 rounded-lg ${active==='support'?'bg-slate-100 dark:bg-slate-800':''} min-h-[44px] transition-colors`} onClick={()=>setActive('support')}>Support</button>
           <button className="w-full text-left px-4 py-2 rounded-lg bg-red-600 text-white min-h-[44px] hover:bg-red-700 transition-colors" onClick={logout}>Logout</button>
         </div>
       </aside>

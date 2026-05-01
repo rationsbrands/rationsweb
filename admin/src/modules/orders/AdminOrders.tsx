@@ -55,7 +55,7 @@ export default function AdminOrders() {
       </div>
 
       <div className="space-y-3 mt-3">
-        {loading && <p className="text-slate-500">Loading...</p>}
+        {loading && <p className="text-slate-500 dark:text-slate-400">Loading...</p>}
         {error && (
           <div className="p-4 text-sm text-red-700 bg-red-100 rounded-lg">
             {error} <button onClick={load} className="ml-2 underline">Retry</button>
@@ -80,14 +80,14 @@ export default function AdminOrders() {
                     Ext: {order.platformOrderId}
                   </div>
                 )}
-                <div className="text-xs text-slate-500 mt-1">
+                <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                   {order.user?.name} • {new Date(order.createdAt).toLocaleString()}
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-2 mt-2 sm:mt-0">
                 <Tag value={order.status} />
                 <select
-                  className={`text-sm rounded-lg px-3 py-2 border min-h-[44px] bg-white focus:outline-none focus:ring-2 focus:ring-slate-500`}
+                  className={`text-sm rounded-lg px-3 py-2 border min-h-[44px] bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-500`}
                   value={order.status}
                   onChange={(e) => updateOrder(order._id, { status: e.target.value })}
                 >
@@ -96,12 +96,12 @@ export default function AdminOrders() {
                   ))}
                 </select>
                 {order.paymentStatus !== 'paid' && (
-                  <button onClick={()=>updateOrder(order._id, { paymentStatus: 'paid' })} className="text-sm px-4 py-2 rounded-full border bg-white hover:bg-slate-50 min-h-[44px] transition-colors">Mark paid</button>
+                  <button onClick={()=>updateOrder(order._id, { paymentStatus: 'paid' })} className="text-sm px-4 py-2 rounded-full border bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 min-h-[44px] transition-colors">Mark paid</button>
                 )}
               </div>
             </div>
           }>
-            <ul className="mt-2 text-xs text-slate-700 list-disc list-inside">
+            <ul className="mt-2 text-xs text-slate-700 dark:text-slate-200 list-disc list-inside">
               {order.items.map(i => (
                 <li key={i._id}>
                   {i.quantity} x {i.menuItem?.name || 'Item'} – ₦{i.priceAtOrderTime}

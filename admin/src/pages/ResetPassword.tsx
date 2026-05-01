@@ -31,11 +31,11 @@ export default function ResetPassword() {
   }
 
   return (
-    <div className="max-w-md mx-auto bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+    <div className="max-w-md mx-auto bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl shadow-sm p-6">
       <h1 className="text-xl font-semibold mb-4">Reset Password</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="relative w-full">
-          <label className="block text-sm mb-1 text-slate-700">New Password</label>
+          <label className="block text-sm mb-1 text-slate-700 dark:text-slate-200">New Password</label>
           <input
             name="password"
             type="password"
@@ -53,7 +53,7 @@ export default function ResetPassword() {
         </div>
 
         <div className="relative w-full">
-          <label className="block text-sm mb-1 text-slate-700">Confirm Password</label>
+          <label className="block text-sm mb-1 text-slate-700 dark:text-slate-200">Confirm Password</label>
           <input
             name="confirm"
             type="password"
@@ -78,11 +78,11 @@ export default function ResetPassword() {
         </button>
 
         <div className="flex items-center gap-2 text-xs text-slate-400">
-          <span className="flex-1 h-px bg-slate-200" />
+          <span className="flex-1 h-px bg-slate-200 dark:bg-slate-700" />
           <span>or</span>
-          <span className="flex-1 h-px bg-slate-200" />
+          <span className="flex-1 h-px bg-slate-200 dark:bg-slate-700" />
         </div>
-        <p className="text-xs text-slate-600 text-center">
+        <p className="text-xs text-slate-600 dark:text-slate-300 text-center">
           Back to <Link to="/admin/login" className="text-primary-600 font-medium hover:underline">Sign in</Link>
         </p>
       </form>

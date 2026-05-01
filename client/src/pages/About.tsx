@@ -22,17 +22,17 @@ export default function About() {
 
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-16">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm sm:text-lg leading-relaxed text-gray-800">
+          <p className="text-sm sm:text-lg leading-relaxed text-gray-800 dark:text-gray-200">
             At <span className="font-semibold text-ration-dark">Rations</span>, we believe food is more than fuel, it's culture, connection, and community.
             Our mission is simple: make wholesome, affordable, and accessible meals part of everyday life while celebrating the richness of local flavors.
           </p>
-          <p className="mt-4 sm:mt-6 text-sm sm:text-lg leading-relaxed text-gray-800">
+          <p className="mt-4 sm:mt-6 text-sm sm:text-lg leading-relaxed text-gray-800 dark:text-gray-200">
             We're not just building a food brand, we're building a movement. From sourcing quality ingredients to creating meals for modern lifestyles,
             everything we do is guided by our core values.
           </p>
         </div>
 
-        <div className="mt-8 sm:mt-14 rounded-2xl border border-gray-100 bg-gradient-to-r from-ration-yellow/10 to-transparent p-3 sm:p-6">
+        <div className="mt-8 sm:mt-14 rounded-2xl border border-gray-100 dark:border-gray-800 bg-gradient-to-r from-ration-yellow/10 to-transparent p-3 sm:p-6">
           <div className="grid items-center gap-3 sm:gap-6 md:grid-cols-3">
             {[
               { label: 'Our Promise', title: 'Transparent Ingredients', desc: 'Honest sourcing, and recipes you can trust.' },
@@ -42,7 +42,7 @@ export default function About() {
               <div key={item.title} className="text-center md:text-left">
                 <div className="text-xs sm:text-sm font-medium text-ration-dark/70">{item.label}</div>
                 <div className="mt-1 text-lg sm:text-2xl font-bold text-ration-dark">{item.title}</div>
-                <p className="mt-2 text-sm sm:text-base text-gray-700">{item.desc}</p>
+                <p className="mt-2 text-sm sm:text-base text-gray-700 dark:text-gray-300">{item.desc}</p>
               </div>
             ))}
           </div>

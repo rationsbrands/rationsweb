@@ -6,7 +6,7 @@ interface TagProps {
 }
 
 export default function Tag({ value, color }: TagProps) {
-  let bg = 'bg-slate-100 text-slate-700'
+  let bg = 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200'
   const v = value?.toLowerCase() || ''
   
   if (v === 'pending') bg = 'bg-yellow-100 text-yellow-700'

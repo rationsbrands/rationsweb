@@ -148,15 +148,15 @@ export default function AdminCommunity() {
     <>
       <h1 className="text-xl font-semibold">Manage community posts</h1>
       {notice && <p className="text-xs text-green-600 mt-1">{notice}</p>}
-      <form onSubmit={handleCreate} className="bg-white border border-slate-100 rounded-xl p-4 space-y-3">
+      <form onSubmit={handleCreate} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 space-y-3">
         <FormInput label="Title" name="title" value={form.title} onChange={handleChange} required />
         <label className="text-sm">
-          <span className="block mb-1 text-slate-700">Tag</span>
+          <span className="block mb-1 text-slate-700 dark:text-slate-200">Tag</span>
           <select
             name="tag"
             value={form.tag}
             onChange={handleChange}
-            className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm"
+            className="w-full border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm"
           >
             <option value="">Select a tag</option>
             {tagOptions.map((t) => (
@@ -195,44 +195,44 @@ export default function AdminCommunity() {
         {['promo','event','announcement','anouncement'].includes(String(form.tag||'').toLowerCase()) && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <label className="text-sm">
-              <span className="block mb-1 text-slate-700">Enable visitor alert</span>
+              <span className="block mb-1 text-slate-700 dark:text-slate-200">Enable visitor alert</span>
               <input type="checkbox" checked={Boolean(form.alertEnabled)} onChange={(e)=>setForm(prev=>({ ...prev, alertEnabled: e.target.checked }))} />
             </label>
             <label className="text-sm">
-              <span className="block mb-1 text-slate-700">Alert start</span>
-              <input type="datetime-local" value={form.alertStart ? new Date(form.alertStart).toISOString().slice(0,16) : ''} onChange={(e)=>setForm(prev=>({ ...prev, alertStart: e.target.value ? new Date(e.target.value).toISOString() : '' }))} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm" />
+              <span className="block mb-1 text-slate-700 dark:text-slate-200">Alert start</span>
+              <input type="datetime-local" value={form.alertStart ? new Date(form.alertStart).toISOString().slice(0,16) : ''} onChange={(e)=>setForm(prev=>({ ...prev, alertStart: e.target.value ? new Date(e.target.value).toISOString() : '' }))} className="w-full border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm" />
             </label>
             <label className="text-sm">
-              <span className="block mb-1 text-slate-700">Alert end</span>
-              <input type="datetime-local" value={form.alertEnd ? new Date(form.alertEnd).toISOString().slice(0,16) : ''} onChange={(e)=>setForm(prev=>({ ...prev, alertEnd: e.target.value ? new Date(e.target.value).toISOString() : '' }))} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm" />
+              <span className="block mb-1 text-slate-700 dark:text-slate-200">Alert end</span>
+              <input type="datetime-local" value={form.alertEnd ? new Date(form.alertEnd).toISOString().slice(0,16) : ''} onChange={(e)=>setForm(prev=>({ ...prev, alertEnd: e.target.value ? new Date(e.target.value).toISOString() : '' }))} className="w-full border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm" />
             </label>
           </div>
         )}
         <FormInput label="Image URL" name="imageUrl" value={form.imageUrl} onChange={handleChange} />
         <label className="text-sm">
-          <span className="block mb-1 text-slate-700">Media URL (optional)</span>
+          <span className="block mb-1 text-slate-700 dark:text-slate-200">Media URL (optional)</span>
           <input
             name="mediaUrl"
             value={form.mediaUrl}
             onChange={handleChange}
-            className={`w-full border rounded-lg px-3 py-2 text-sm ${errors.mediaUrl?'border-red-500':'border-slate-200'}`}
+            className={`w-full border rounded-lg px-3 py-2 text-sm ${errors.mediaUrl?'border-red-500':'border-slate-200 dark:border-slate-700'}`}
             placeholder="https://..."
           />
           {errors.mediaUrl && <span className="text-xs text-red-600 mt-1">{errors.mediaUrl}</span>}
-          <span className="block mt-1 text-xs text-slate-500">Paste a YouTube link, audio, video, or image URL to embed media with this post.</span>
+          <span className="block mt-1 text-xs text-slate-500 dark:text-slate-400">Paste a YouTube link, audio, video, or image URL to embed media with this post.</span>
         </label>
         <FormInput label="Media title/caption (optional)" name="mediaTitle" value={form.mediaTitle} onChange={handleChange} />
         <label className="text-sm">
-          <span className="block mb-1 text-slate-700">External link (optional)</span>
+          <span className="block mb-1 text-slate-700 dark:text-slate-200">External link (optional)</span>
           <input
             name="externalLinkUrl"
             value={form.externalLinkUrl}
             onChange={handleChange}
-            className={`w-full border rounded-lg px-3 py-2 text-sm ${errors.externalLinkUrl?'border-red-500':'border-slate-200'}`}
+            className={`w-full border rounded-lg px-3 py-2 text-sm ${errors.externalLinkUrl?'border-red-500':'border-slate-200 dark:border-slate-700'}`}
             placeholder="https://..."
           />
           {errors.externalLinkUrl && <span className="text-xs text-red-600 mt-1">{errors.externalLinkUrl}</span>}
-          <span className="block mt-1 text-xs text-slate-500">Add a social or external link related to this post.</span>
+          <span className="block mt-1 text-xs text-slate-500 dark:text-slate-400">Add a social or external link related to this post.</span>
         </label>
         <FormInput label="External link title/caption (optional)" name="externalLinkTitle" value={form.externalLinkTitle} onChange={handleChange} />
         
@@ -242,13 +242,13 @@ export default function AdminCommunity() {
         </label>
 
         <label className="text-sm">
-          <span className="block mb-1 text-slate-700">Content</span>
+          <span className="block mb-1 text-slate-700 dark:text-slate-200">Content</span>
           <textarea
             name="content"
             value={form.content}
             onChange={handleChange}
             rows={3}
-            className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
         </label>
         <div className="flex items-center gap-2">
@@ -261,14 +261,14 @@ export default function AdminCommunity() {
 
       <div>
         <h2 className="font-semibold mb-2">Existing posts</h2>
-        {loading && <p className="text-slate-500">Loading...</p>}
+        {loading && <p className="text-slate-500 dark:text-slate-400">Loading...</p>}
         <div className="space-y-2">
           {posts.map(post => (
-            <div key={post._id} className="bg-white border border-slate-100 rounded-xl p-3 flex justify-between items-start">
+            <div key={post._id} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-3 flex justify-between items-start">
               <div>
                 <div className="text-xs text-primary-600 uppercase">{post.tag}</div>
                 <div className="font-semibold">{post.title}</div>
-                <div className="text-xs text-slate-500 line-clamp-2 mt-1">{post.content}</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1">{post.content}</div>
               </div>
               <div className="flex items-center gap-2">
                 <button

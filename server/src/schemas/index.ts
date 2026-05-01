@@ -31,6 +31,13 @@ export const createMenuItemSchema = z.object({
   trackStock: z.boolean().optional(),
   stockQuantity: z.number().min(0).optional(),
   lowStockThreshold: z.number().min(0).optional(),
+  popularity: z.number().optional(),
+  promoActive: z.boolean().optional(),
+  promoType: z.enum(['percentage', 'fixed_price']).nullable().optional(),
+  promoValue: z.number().nullable().optional(),
+  promoStart: z.union([z.string().datetime(), z.date()]).nullable().optional(),
+  promoEnd: z.union([z.string().datetime(), z.date()]).nullable().optional(),
+  promoLabel: z.string().nullable().optional(),
 }).strict()
 
 export const updateMenuItemSchema = createMenuItemSchema.partial().strict()

@@ -30,11 +30,11 @@ export default function AdminOrderDetail() {
   return (
     <>
       <PageHeader title="Order detail" />
-      {loading && <p className="text-sm text-slate-500">Loading...</p>}
+      {loading && <p className="text-sm text-slate-500 dark:text-slate-400">Loading...</p>}
       {order && (
         <div className="grid md:grid-cols-2 gap-4 mt-2 text-sm">
           <Card header={<div className="flex items-center justify-between"><div className="font-semibold">Order #{order._id.slice(-6)}</div><Tag value={order.status} /></div>}>
-            <div className="text-xs text-slate-500">{new Date(order.createdAt).toLocaleString()}</div>
+            <div className="text-xs text-slate-500 dark:text-slate-400">{new Date(order.createdAt).toLocaleString()}</div>
             <div className="mt-2">Customer: {order.user?.name} • {order.user?.phone}</div>
             <div>Type: {order.orderType}</div>
             <div>Payment: {order.paymentStatus}</div>

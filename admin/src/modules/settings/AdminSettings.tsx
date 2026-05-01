@@ -266,7 +266,7 @@ export default function AdminSettings() {
   }
 
   if (loading) return (
-    <p className="text-sm text-slate-500">Loading...</p>
+    <p className="text-sm text-slate-500 dark:text-slate-400">Loading...</p>
   )
 
   if (!settings) return (
@@ -285,31 +285,31 @@ export default function AdminSettings() {
       {error && <p className="text-sm text-red-500 mt-1">{error}</p>}
       {notice && <p className="text-xs text-green-600 mt-1">{notice}</p>}
       
-      <div className="bg-white border border-slate-100 rounded-xl p-4 text-sm mt-3">
+      <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 text-sm mt-3">
         <div className="flex items-center justify-between mb-2">
           <div className="font-semibold">Site Identity & Theme</div>
           {!editingIdentity && (
-            <button className="text-sm px-4 py-2 min-h-[44px] rounded-full border hover:bg-slate-50 transition-colors" onClick={()=>setEditingIdentity(true)}>Edit</button>
+            <button className="text-sm px-4 py-2 min-h-[44px] rounded-full border hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" onClick={()=>setEditingIdentity(true)}>Edit</button>
           )}
         </div>
         {editingIdentity ? (
           <div className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               <label className="block">
-                <span className="text-sm font-medium text-slate-700 mb-1 block">Site Name</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">Site Name</span>
                 <input value={settings.siteName || ''} onChange={(e)=>updateField('siteName', e.target.value)} className="w-full border rounded-lg px-3 py-2 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-slate-500" />
               </label>
               <label className="block">
-                <span className="text-sm font-medium text-slate-700 mb-1 block">Tagline</span>
+                <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">Tagline</span>
                 <input value={settings.tagline || ''} onChange={(e)=>updateField('tagline', e.target.value)} className="w-full border rounded-lg px-3 py-2 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-slate-500" />
               </label>
             </div>
             <label className="block">
-              <span className="text-sm font-medium text-slate-700 mb-1 block">Description</span>
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">Description</span>
               <textarea value={settings.description || ''} onChange={(e)=>updateField('description', e.target.value)} className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 min-h-[80px]" />
             </label>
             <label className="block">
-              <span className="text-sm font-medium text-slate-700 mb-1 block">Primary Color</span>
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">Primary Color</span>
               <div className="flex gap-2 items-center">
                 <input type="color" value={settings.primaryColor || '#FDCD2F'} onChange={(e)=>updateField('primaryColor', e.target.value)} className="h-11 w-16 p-0 border-0 rounded cursor-pointer" />
                 <input value={settings.primaryColor || '#FDCD2F'} onChange={(e)=>updateField('primaryColor', e.target.value)} className="border rounded-lg px-3 py-2 min-h-[44px] w-28 text-sm focus:outline-none focus:ring-2 focus:ring-slate-500" />
@@ -323,19 +323,19 @@ export default function AdminSettings() {
         ) : (
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <div className="text-xs text-slate-500 uppercase">Site Name</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 uppercase">Site Name</div>
               <div className="font-medium">{settings.siteName || '—'}</div>
             </div>
             <div>
-              <div className="text-xs text-slate-500 uppercase">Tagline</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 uppercase">Tagline</div>
               <div>{settings.tagline || '—'}</div>
             </div>
             <div className="md:col-span-2">
-              <div className="text-xs text-slate-500 uppercase">Description</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 uppercase">Description</div>
               <div>{settings.description || '—'}</div>
             </div>
             <div>
-               <div className="text-xs text-slate-500 uppercase">Primary Color</div>
+               <div className="text-xs text-slate-500 dark:text-slate-400 uppercase">Primary Color</div>
                <div className="flex gap-2 items-center">
                  <div className="w-4 h-4 rounded-full border" style={{ backgroundColor: settings.primaryColor || '#FDCD2F' }}></div>
                  <span>{settings.primaryColor || '#FDCD2F'}</span>
@@ -346,37 +346,37 @@ export default function AdminSettings() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-4 mt-3">
-        <div className="bg-white border border-slate-100 rounded-xl p-4 text-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 text-sm">
           <div className="flex items-center justify-between mb-2">
             <div className="font-semibold">Contacts</div>
             {!editingContacts && (
-              <button className="text-sm px-4 py-2 min-h-[44px] rounded-full border hover:bg-slate-50 transition-colors" onClick={()=>setEditingContacts(true)}>Edit</button>
+              <button className="text-sm px-4 py-2 min-h-[44px] rounded-full border hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" onClick={()=>setEditingContacts(true)}>Edit</button>
             )}
           </div>
           {editingContacts ? (
             <div className="space-y-4">
               <div className="space-y-3">
-                <div className="font-medium text-xs text-slate-500 uppercase tracking-wider">Primary Contacts</div>
+                <div className="font-medium text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">Primary Contacts</div>
                 <label className="block">
-                  <span className="text-sm font-medium text-slate-700 mb-1 block">Email</span>
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">Email</span>
                   <input value={contacts.email || ''} onChange={(e)=>updateField('contacts.email', e.target.value)} className="w-full border rounded-lg px-3 py-2 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-slate-500" />
                 </label>
                 <label className="block">
-                  <span className="text-sm font-medium text-slate-700 mb-1 block">Phone</span>
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">Phone</span>
                   <input value={contacts.phone || ''} onChange={(e)=>updateField('contacts.phone', e.target.value)} className="w-full border rounded-lg px-3 py-2 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-slate-500" />
                 </label>
                 <label className="block">
-                  <span className="text-sm font-medium text-slate-700 mb-1 block">WhatsApp</span>
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">WhatsApp</span>
                   <input value={contacts.whatsapp || ''} onChange={(e)=>updateField('contacts.whatsapp', e.target.value)} className="w-full border rounded-lg px-3 py-2 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-slate-500" />
                 </label>
                 <label className="block">
-                  <span className="text-sm font-medium text-slate-700 mb-1 block">Location</span>
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">Location</span>
                   <input value={contacts.location || ''} onChange={(e)=>updateField('contacts.location', e.target.value)} className="w-full border rounded-lg px-3 py-2 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-slate-500" />
                 </label>
               </div>
 
               <div className="space-y-3 border-t pt-4">
-                <div className="font-medium text-xs text-slate-500 uppercase tracking-wider">Additional Contacts</div>
+                <div className="font-medium text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">Additional Contacts</div>
                 {additionalContacts.map((c, idx) => (
                   <div key={idx} className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-start">
                     <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -423,8 +423,8 @@ export default function AdminSettings() {
               {additionalContacts.length > 0 && (
                 <div className="pt-2 border-t space-y-1">
                   {additionalContacts.map((c, idx) => (
-                    <div key={idx} className="text-slate-600">
-                      <span className="font-medium text-slate-900">{c.label}:</span> {c.value}
+                    <div key={idx} className="text-slate-600 dark:text-slate-300">
+                      <span className="font-medium text-slate-900 dark:text-white">{c.label}:</span> {c.value}
                     </div>
                   ))}
                 </div>
@@ -432,11 +432,11 @@ export default function AdminSettings() {
             </div>
           )}
         </div>
-        <div className="bg-white border border-slate-100 rounded-xl p-4 text-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 text-sm">
         <div className="flex items-center justify-between mb-2">
           <div className="font-semibold">Bank Accounts</div>
           {!editingBank && (
-            <button className="text-sm px-4 py-2 min-h-[44px] rounded-full border hover:bg-slate-50 transition-colors" onClick={()=>setEditingBank(true)}>Edit</button>
+            <button className="text-sm px-4 py-2 min-h-[44px] rounded-full border hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" onClick={()=>setEditingBank(true)}>Edit</button>
           )}
         </div>
         {editingBank ? (
@@ -444,7 +444,7 @@ export default function AdminSettings() {
             {bankAccounts.map((acc, idx) => (
               <div key={idx} className="space-y-3 border-b pb-4 last:border-0 last:pb-0 relative">
                 <div className="flex justify-between items-center">
-                  <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Account #{idx + 1}</div>
+                  <div className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Account #{idx + 1}</div>
                   {bankAccounts.length > 1 && (
                     <button onClick={() => removeBankAccount(idx)} className="p-2 text-red-500 hover:bg-red-50 rounded min-h-[44px] min-w-[44px] flex items-center justify-center">
                       <Trash2 size={18} />
@@ -452,15 +452,15 @@ export default function AdminSettings() {
                   )}
                 </div>
                 <label className="block">
-                  <span className="text-sm font-medium text-slate-700 mb-1 block">Bank Name</span>
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">Bank Name</span>
                   <input value={acc.bankName || ''} onChange={(e)=>updateBankAccount(idx, 'bankName', e.target.value)} className="w-full border rounded-lg px-3 py-2 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-slate-500" />
                 </label>
                 <label className="block">
-                  <span className="text-sm font-medium text-slate-700 mb-1 block">Account Name</span>
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">Account Name</span>
                   <input value={acc.accountName || ''} onChange={(e)=>updateBankAccount(idx, 'accountName', e.target.value)} className="w-full border rounded-lg px-3 py-2 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-slate-500" />
                 </label>
                 <label className="block">
-                  <span className="text-sm font-medium text-slate-700 mb-1 block">Account Number</span>
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200 mb-1 block">Account Number</span>
                   <input value={acc.accountNumber || ''} onChange={(e)=>updateBankAccount(idx, 'accountNumber', e.target.value)} className="w-full border rounded-lg px-3 py-2 min-h-[44px] text-sm focus:outline-none focus:ring-2 focus:ring-slate-500" />
                 </label>
               </div>
@@ -479,26 +479,47 @@ export default function AdminSettings() {
             <div className="space-y-4">
               {bankAccounts.map((acc, idx) => (
                 <div key={idx} className="space-y-1">
-                  <div className="font-medium text-slate-900">{acc.bankName || '—'}</div>
+                  <div className="font-medium text-slate-900 dark:text-white">{acc.bankName || '—'}</div>
                   <div>{acc.accountName || '—'}</div>
-                  <div className="font-mono text-slate-600">{acc.accountNumber || '—'}</div>
+                  <div className="font-mono text-slate-600 dark:text-slate-300">{acc.accountNumber || '—'}</div>
                 </div>
               ))}
-              {bankAccounts.length === 0 && <div className="text-slate-500 italic">No bank accounts added</div>}
+              {bankAccounts.length === 0 && <div className="text-slate-500 dark:text-slate-400 italic">No bank accounts added</div>}
             </div>
           )}
         </div>
       </div>
-      <div className="bg-white border border-slate-100 rounded-xl p-4 text-sm mt-4">
+      <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 text-sm mt-4">
         <div className="flex items-center justify-between mb-2">
           <div className="font-semibold">Promos & Events</div>
         </div>
         
-        <div className="mb-4 p-3 bg-slate-50 rounded-lg border border-slate-200">
+        <div className="mb-4 p-3 bg-slate-50 dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-slate-700">
            <div className="flex justify-between items-center">
              <div>
-               <div className="font-medium text-slate-800">Visitor Alert Banner</div>
-               <div className="text-xs text-slate-500">Show the active promo/event at the top of the site.</div>
+               <div className="font-medium text-slate-800 dark:text-slate-100">Global Promo Pricing</div>
+               <div className="text-xs text-slate-500 dark:text-slate-400">Enable or disable all promotional prices on the website menu.</div>
+             </div>
+             <div className="flex items-center gap-3">
+               <label className="flex items-center cursor-pointer relative min-h-[44px]">
+                 <input 
+                   type="checkbox" 
+                   className="sr-only peer" 
+                   checked={Boolean(settings?.features?.promoPricingEnabled)} 
+                   onChange={(e) => updateField('features.promoPricingEnabled', e.target.checked)} 
+                 />
+                 <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+               </label>
+               <Button onClick={save} className="min-h-[44px]">Save</Button>
+             </div>
+           </div>
+        </div>
+        
+        <div className="mb-4 p-3 bg-slate-50 dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-slate-700">
+           <div className="flex justify-between items-center">
+             <div>
+               <div className="font-medium text-slate-800 dark:text-slate-100">Visitor Alert Banner</div>
+               <div className="text-xs text-slate-500 dark:text-slate-400">Show the active promo/event at the top of the site.</div>
              </div>
              <div className="flex items-center gap-3">
                <label className="flex items-center cursor-pointer relative min-h-[44px]">
@@ -508,7 +529,7 @@ export default function AdminSettings() {
                    checked={visitorAlertEnabled} 
                    onChange={(e) => updateField('visitorAlertEnabled', e.target.checked)} 
                  />
-                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                 <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                </label>
                <Button onClick={save} className="min-h-[44px]">Save</Button>
              </div>
@@ -518,14 +539,14 @@ export default function AdminSettings() {
         <div className="mt-2">
           <div className="font-semibold mb-2">Enabled alerts</div>
           {loadingAlerts ? (
-            <div className="text-sm text-slate-500">Loading alerts...</div>
+            <div className="text-sm text-slate-500 dark:text-slate-400">Loading alerts...</div>
           ) : alerts.length === 0 ? (
-            <div className="text-sm text-slate-500">No enabled alerts</div>
+            <div className="text-sm text-slate-500 dark:text-slate-400">No enabled alerts</div>
           ) : (
             <div className="space-y-2">
               {alerts.map((a, idx) => (
                 <div key={a._id} className="border rounded-lg p-3">
-                  <div className="text-xs uppercase text-slate-500">{a.tag}</div>
+                  <div className="text-xs uppercase text-slate-500 dark:text-slate-400">{a.tag}</div>
                   <div className="font-medium">{a.title}</div>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mt-2 items-end">
                     <label className="text-sm">
@@ -554,10 +575,10 @@ export default function AdminSettings() {
           )}
         </div>
       </div>
-      <div className="bg-white border border-slate-100 rounded-xl p-4 text-sm mt-4">
+      <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 text-sm mt-4">
         <div className="font-semibold mb-2">Platform Integrations</div>
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-          <div className="text-slate-500 text-xs">
+          <div className="text-slate-500 dark:text-slate-400 text-xs">
             Manage connections to Instagram, payment gateways, and other external services.
           </div>
           <div className="flex gap-2 w-full md:w-auto">
@@ -570,11 +591,11 @@ export default function AdminSettings() {
           </div>
         </div>
       </div>
-      <div className="bg-white border border-slate-100 rounded-xl p-4 text-sm mt-4">
+      <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 text-sm mt-4">
         <div className="flex items-center justify-between mb-2">
           <div className="font-semibold">Socials</div>
           {!editingSocials && (
-            <button className="text-sm px-4 py-2 min-h-[44px] rounded-full border hover:bg-slate-50 transition-colors" onClick={()=>setEditingSocials(true)}>Edit</button>
+            <button className="text-sm px-4 py-2 min-h-[44px] rounded-full border hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" onClick={()=>setEditingSocials(true)}>Edit</button>
           )}
         </div>
         {editingSocials ? (

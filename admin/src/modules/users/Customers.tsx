@@ -38,10 +38,10 @@ export default function Customers() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
         <TextInput label="Search" placeholder="Search name or phone" value={q} onChange={(e)=>setQ(e.target.value)} />
       </div>
-      {loading && <div className="text-sm text-slate-500">Loading...</div>}
+      {loading && <div className="text-sm text-slate-500 dark:text-slate-400">Loading...</div>}
       <div className="grid md:grid-cols-2 gap-2">
         {customers.map((c)=> (
-          <Card key={c.id} className="text-sm" header={<div className="flex items-center justify-between"><div className="font-semibold">{c.name}</div><div className="text-xs text-slate-600">{c.phone}</div></div>}>
+          <Card key={c.id} className="text-sm" header={<div className="flex items-center justify-between"><div className="font-semibold">{c.name}</div><div className="text-xs text-slate-600 dark:text-slate-300">{c.phone}</div></div>}>
             <div className="text-xs">Email: {c.email || '—'}</div>
             <div className="text-xs">Total orders: {c.totalOrders}</div>
             <div className="text-xs">Last order: {c.lastOrderAt ? new Date(c.lastOrderAt).toLocaleString() : '—'}</div>

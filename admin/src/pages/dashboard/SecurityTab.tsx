@@ -34,27 +34,27 @@ export default function SecurityTab() {
   }
 
   return (
-    <div className="bg-white border border-slate-100 rounded-xl p-4 space-y-3">
+    <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 space-y-3">
       <h2 className="text-lg font-semibold">Security</h2>
       <div>
-        <label className="block text-xs text-slate-600 mb-1">Current Password</label>
-        <input type="password" value={form.currentPassword} onChange={(e)=>setForm(f=>({ ...f, currentPassword: e.target.value }))} className={`w-full rounded-lg px-3 py-2 text-sm border ${errors.currentPassword?'border-red-500':'border-slate-300'}`} />
+        <label className="block text-xs text-slate-600 dark:text-slate-300 mb-1">Current Password</label>
+        <input type="password" value={form.currentPassword} onChange={(e)=>setForm(f=>({ ...f, currentPassword: e.target.value }))} className={`w-full rounded-lg px-3 py-2 text-sm border ${errors.currentPassword?'border-red-500':'border-slate-300 dark:border-slate-600'}`} />
         {errors.currentPassword && <p className="text-xs text-red-600 mt-1">{errors.currentPassword}</p>}
       </div>
       <div>
-        <label className="block text-xs text-slate-600 mb-1">New Password</label>
-        <input type="password" value={form.newPassword} onChange={(e)=>setForm(f=>({ ...f, newPassword: e.target.value }))} className={`w-full rounded-lg px-3 py-2 text-sm border ${errors.newPassword?'border-red-500':'border-slate-300'}`} />
+        <label className="block text-xs text-slate-600 dark:text-slate-300 mb-1">New Password</label>
+        <input type="password" value={form.newPassword} onChange={(e)=>setForm(f=>({ ...f, newPassword: e.target.value }))} className={`w-full rounded-lg px-3 py-2 text-sm border ${errors.newPassword?'border-red-500':'border-slate-300 dark:border-slate-600'}`} />
         {errors.newPassword && <p className="text-xs text-red-600 mt-1">{errors.newPassword}</p>}
       </div>
       <div>
-        <label className="block text-xs text-slate-600 mb-1">Confirm New Password</label>
-        <input type="password" value={form.confirmNewPassword} onChange={(e)=>setForm(f=>({ ...f, confirmNewPassword: e.target.value }))} className={`w-full rounded-lg px-3 py-2 text-sm border ${errors.confirmNewPassword?'border-red-500':'border-slate-300'}`} />
+        <label className="block text-xs text-slate-600 dark:text-slate-300 mb-1">Confirm New Password</label>
+        <input type="password" value={form.confirmNewPassword} onChange={(e)=>setForm(f=>({ ...f, confirmNewPassword: e.target.value }))} className={`w-full rounded-lg px-3 py-2 text-sm border ${errors.confirmNewPassword?'border-red-500':'border-slate-300 dark:border-slate-600'}`} />
         {errors.confirmNewPassword && <p className="text-xs text-red-600 mt-1">{errors.confirmNewPassword}</p>}
       </div>
       <div className="flex items-center gap-2">
         <button className="px-3 py-2 rounded-full bg-ration-dark text-ration-yellow text-sm" onClick={submit} disabled={saving}>{saving?'Updating...':'Update Password'}</button>
       </div>
-      {msg && <p className="text-xs text-slate-600">{msg}</p>}
+      {msg && <p className="text-xs text-slate-600 dark:text-slate-300">{msg}</p>}
     </div>
   )
 }

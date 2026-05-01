@@ -1440,12 +1440,13 @@ router.delete('/menu/:id', authorize('owner', 'admin', 'manager'), async (req, r
         metadata: { archived: true },
       })
     } catch {}
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' })
+  } catch (error: any) {
+    console.error('DELETE /menu/:id error:', error)
+    res.status(500).json({ message: error.message || 'Server error' })
   }
 })
 
-router.delete('/menu/:id/hard', authorize('owner'), async (req, res) => {
+router.delete('/menu/:id/hard', authorize('owner', 'admin', 'manager'), async (req, res) => {
   try {
     // Find before delete to get externalId
     const itemToDelete = await MenuItem.findOne({ _id: req.params.id })
@@ -1476,6 +1477,136 @@ router.delete('/menu/:id/hard', authorize('owner'), async (req, res) => {
         metadata: {},
       })
     } catch {}
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' })
+  }
+})
+
+// --- Promo Routes ---
+router.post('/menu/promo/bulk', authorize('owner', 'admin', 'manager'), async (req, res) => {
+  try {
+    const { scope, category, promoType, promoValue, promoStart, promoEnd, promoLabel } = req.body
+    
+    const query: any = { archived: { $ne: true } }
+    if (scope === 'category' && category) {
+      query.category = new RegExp(`^${category}$`, 'i')
+    }
+    
+    const updateData = {
+      promoActive: true,
+      promoType,
+      promoValue,
+      promoStart: promoStart || null,
+      promoEnd: promoEnd || null,
+      promoLabel: promoLabel || null,
+    }
+    
+    const result = await MenuItem.updateMany(query, { $set: updateData })
+    
+    try {
+      await logAudit(req, {
+        action: 'MENU_PROMO_BULK_ACTIVATE',
+        entityType: 'menu',
+        entityId: 'bulk',
+        metadata: { scope, category, promoType, promoValue, count: result.modifiedCount },
+      })
+    } catch {}
+    
+    res.json({ success: true, data: { count: result.modifiedCount } })
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' })
+  }
+})
+
+router.delete('/menu/promo/bulk', authorize('owner', 'admin', 'manager'), async (req, res) => {
+  try {
+    const { scope, category } = req.body
+    
+    const query: any = { archived: { $ne: true } }
+    if (scope === 'category' && category) {
+      query.category = new RegExp(`^${category}$`, 'i')
+    }
+    
+    const updateData = {
+      promoActive: false,
+      promoType: null,
+      promoValue: null,
+      promoStart: null,
+      promoEnd: null,
+      promoLabel: null,
+    }
+    
+    const result = await MenuItem.updateMany(query, { $set: updateData })
+    
+    try {
+      await logAudit(req, {
+        action: 'MENU_PROMO_BULK_DEACTIVATE',
+        entityType: 'menu',
+        entityId: 'bulk',
+        metadata: { scope, category, count: result.modifiedCount },
+      })
+    } catch {}
+    
+    res.json({ success: true, data: { count: result.modifiedCount } })
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' })
+  }
+})
+
+router.post('/menu/:id/promo', authorize('owner', 'admin', 'manager'), async (req, res) => {
+  try {
+    const { promoType, promoValue, promoStart, promoEnd, promoLabel } = req.body
+    const item = await MenuItem.findById(req.params.id)
+    if (!item) return res.status(404).json({ message: 'Item not found' })
+
+    item.promoActive = true
+    item.promoType = promoType
+    item.promoValue = promoValue
+    item.promoStart = promoStart || null
+    item.promoEnd = promoEnd || null
+    item.promoLabel = promoLabel || null
+
+    await item.save()
+
+    try {
+      await logAudit(req, {
+        action: 'MENU_PROMO_ACTIVATE',
+        entityType: 'menu',
+        entityId: String(item._id),
+        metadata: { name: item.name, promoType, promoValue },
+      })
+    } catch {}
+
+    res.json({ success: true, data: item })
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' })
+  }
+})
+
+router.delete('/menu/:id/promo', authorize('owner', 'admin', 'manager'), async (req, res) => {
+  try {
+    const item = await MenuItem.findById(req.params.id)
+    if (!item) return res.status(404).json({ message: 'Item not found' })
+
+    item.promoActive = false
+    item.promoType = null
+    item.promoValue = null
+    item.promoStart = null
+    item.promoEnd = null
+    item.promoLabel = null
+
+    await item.save()
+
+    try {
+      await logAudit(req, {
+        action: 'MENU_PROMO_DEACTIVATE',
+        entityType: 'menu',
+        entityId: String(item._id),
+        metadata: { name: item.name },
+      })
+    } catch {}
+
+    res.json({ success: true, data: item })
   } catch (error) {
     res.status(500).json({ message: 'Server error' })
   }

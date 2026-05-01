@@ -36,37 +36,37 @@ export default function ProfileTab({ me, onUpdated }: any) {
   }
 
   return (
-    <div className="bg-white border border-slate-100 rounded-xl p-4 space-y-3">
+    <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 space-y-3">
       <h2 className="text-lg font-semibold">Profile</h2>
       <div>
-        <label className="block text-xs text-slate-600 mb-1">Name *</label>
-        <input disabled={!editing} value={form.name} onChange={(e)=>setForm(f=>({ ...f, name: e.target.value }))} className={`w-full rounded-lg px-3 py-2 text-sm border ${errors.name?'border-red-500':'border-slate-300'}`} />
+        <label className="block text-xs text-slate-600 dark:text-slate-300 mb-1">Name *</label>
+        <input disabled={!editing} value={form.name} onChange={(e)=>setForm(f=>({ ...f, name: e.target.value }))} className={`w-full rounded-lg px-3 py-2 text-sm border ${errors.name?'border-red-500':'border-slate-300 dark:border-slate-600'}`} />
         {errors.name && <p className="text-xs text-red-600 mt-1">{errors.name}</p>}
       </div>
       <div>
-        <label className="block text-xs text-slate-600 mb-1">Phone *</label>
-        <input disabled={!editing} value={form.phone} onChange={(e)=>setForm(f=>({ ...f, phone: e.target.value }))} className={`w-full rounded-lg px-3 py-2 text-sm border ${errors.phone?'border-red-500':'border-slate-300'}`} />
+        <label className="block text-xs text-slate-600 dark:text-slate-300 mb-1">Phone *</label>
+        <input disabled={!editing} value={form.phone} onChange={(e)=>setForm(f=>({ ...f, phone: e.target.value }))} className={`w-full rounded-lg px-3 py-2 text-sm border ${errors.phone?'border-red-500':'border-slate-300 dark:border-slate-600'}`} />
         {errors.phone && <p className="text-xs text-red-600 mt-1">{errors.phone}</p>}
       </div>
       <div>
-        <label className="block text-xs text-slate-600 mb-1">Email</label>
-        <input disabled={!editing} value={form.email} onChange={(e)=>setForm(f=>({ ...f, email: e.target.value }))} className="w-full rounded-lg px-3 py-2 text-sm border border-slate-300" />
+        <label className="block text-xs text-slate-600 dark:text-slate-300 mb-1">Email</label>
+        <input disabled={!editing} value={form.email} onChange={(e)=>setForm(f=>({ ...f, email: e.target.value }))} className="w-full rounded-lg px-3 py-2 text-sm border border-slate-300 dark:border-slate-600" />
       </div>
       <div>
-        <label className="block text-xs text-slate-600 mb-1">Address Line</label>
-        <input disabled={!editing} value={form.addressLine} onChange={(e)=>setForm(f=>({ ...f, addressLine: e.target.value }))} className="w-full rounded-lg px-3 py-2 text-sm border border-slate-300" />
+        <label className="block text-xs text-slate-600 dark:text-slate-300 mb-1">Address Line</label>
+        <input disabled={!editing} value={form.addressLine} onChange={(e)=>setForm(f=>({ ...f, addressLine: e.target.value }))} className="w-full rounded-lg px-3 py-2 text-sm border border-slate-300 dark:border-slate-600" />
       </div>
       <div className="flex items-center gap-2">
         {!editing ? (
-          <button className="px-3 py-2 rounded-full border border-slate-300 text-sm" onClick={()=>setEditing(true)}>Edit</button>
+          <button className="px-3 py-2 rounded-full border border-slate-300 dark:border-slate-600 text-sm" onClick={()=>setEditing(true)}>Edit</button>
         ) : (
           <>
             <button className="px-3 py-2 rounded-full bg-ration-dark text-ration-yellow text-sm" onClick={save} disabled={saving}>{saving?'Saving...':'Save Changes'}</button>
-            <button className="px-3 py-2 rounded-full border border-slate-300 text-sm" onClick={()=>{ setEditing(false); setErrors({ name:'', phone:'' }) }}>Cancel</button>
+            <button className="px-3 py-2 rounded-full border border-slate-300 dark:border-slate-600 text-sm" onClick={()=>{ setEditing(false); setErrors({ name:'', phone:'' }) }}>Cancel</button>
           </>
         )}
       </div>
-      {msg && <p className="text-xs text-slate-600">{msg}</p>}
+      {msg && <p className="text-xs text-slate-600 dark:text-slate-300">{msg}</p>}
     </div>
   )
 }

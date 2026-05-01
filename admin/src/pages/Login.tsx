@@ -63,10 +63,10 @@ export default function Login() {
   }
 
   return (
-    <div className="max-w-md mx-auto bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
+    <div className="max-w-md mx-auto bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl shadow-sm p-8">
       <div className="mb-6 text-center">
-        <h1 className="text-2xl font-bold text-slate-900">Admin Sign in</h1>
-        <p className="text-sm text-slate-500 mt-1">Manage menu, orders, and content</p>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Admin Sign in</h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Manage menu, orders, and content</p>
       </div>
 
       <div className="mb-6 bg-amber-50 border border-amber-100 rounded-lg p-3 flex items-start gap-3">
@@ -89,27 +89,27 @@ export default function Login() {
         )}
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Email or Phone</label>
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Email or Phone</label>
           <input
             type="text"
             name="identifier"
             value={form.identifier}
             onChange={handleChange}
-            className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-base"
+            className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all text-base"
             placeholder="email"
             required
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
+          <label className="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-1">Password</label>
           <div className="relative">
             <input
               type={passwordVisible ? 'text' : 'password'}
               name="password"
               value={form.password}
               onChange={handleChange}
-              className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all pr-10 text-base"
+              className="w-full px-4 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all pr-10 text-base"
               placeholder="••••••••"
               required
             />

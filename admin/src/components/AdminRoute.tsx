@@ -7,7 +7,7 @@ export default function AdminRoute({ children }: any) {
   const location = useLocation()
 
   if (loading) {
-    return <div className="text-center py-10 text-sm text-slate-500">Loading...</div>
+    return <div className="text-center py-10 text-sm text-slate-500 dark:text-slate-400">Loading...</div>
   }
 
   if (error) {
@@ -16,7 +16,7 @@ export default function AdminRoute({ children }: any) {
         <p className="text-red-600 mb-2">Network error. Please check your connection.</p>
         <button 
           onClick={() => window.location.reload()} 
-          className="px-4 py-2 bg-slate-200 rounded hover:bg-slate-300 text-sm"
+          className="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded hover:bg-slate-300 text-sm"
         >
           Retry
         </button>

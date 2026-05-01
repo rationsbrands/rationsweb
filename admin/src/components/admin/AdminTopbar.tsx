@@ -51,7 +51,7 @@ export default function AdminTopbar({ onToggleSidebar }: any) {
       </div>
       <div className="flex items-center gap-3">
         <ThemeToggle />
-        <div className="hidden sm:block text-xs text-slate-600 dark:text-slate-400">{String(user?.role||'').toUpperCase()} • {user?.name || ''}</div>
+        <div className="hidden sm:block text-xs text-slate-600 dark:text-slate-300 dark:text-slate-400">{String(user?.role||'').toUpperCase()} • {user?.name || ''}</div>
         {platformEnabled && (
           <button
             onClick={openPlatform}

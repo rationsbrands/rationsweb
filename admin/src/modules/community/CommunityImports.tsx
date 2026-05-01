@@ -77,14 +77,14 @@ export default function CommunityImports() {
       {notice && <div className="bg-green-50 text-green-600 p-3 rounded-lg text-sm">{notice}</div>}
 
       {loading ? (
-        <div className="text-center py-12 text-slate-500">Loading pending posts...</div>
+        <div className="text-center py-12 text-slate-500 dark:text-slate-400">Loading pending posts...</div>
       ) : posts.length === 0 ? (
-        <div className="bg-white border border-slate-200 rounded-xl p-12 text-center">
-          <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-12 text-center">
+          <div className="w-16 h-16 bg-slate-50 dark:bg-slate-950 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
             <Check size={32} />
           </div>
-          <h3 className="text-lg font-medium text-slate-800">All caught up!</h3>
-          <p className="text-slate-500 mt-1">No pending imports in the queue.</p>
+          <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100">All caught up!</h3>
+          <p className="text-slate-500 dark:text-slate-400 mt-1">No pending imports in the queue.</p>
           <div className="mt-6">
             <Button variant="outline" onClick={() => navigate('/integrations/social')}>
               Sync more posts
@@ -94,9 +94,9 @@ export default function CommunityImports() {
       ) : (
         <div className="grid grid-cols-1 gap-4">
           {posts.map((post: any) => (
-            <div key={post._id} className="bg-white border border-slate-200 rounded-xl p-4 flex gap-4 items-start hover:shadow-sm transition-shadow">
+            <div key={post._id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-4 flex gap-4 items-start hover:shadow-sm transition-shadow">
               {/* Thumbnail */}
-              <div className="w-24 h-24 bg-slate-100 rounded-lg overflow-hidden flex-shrink-0 relative">
+              <div className="w-24 h-24 bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden flex-shrink-0 relative">
                 {post.imageUrl ? (
                     <img src={post.imageUrl} alt="" className="w-full h-full object-cover" />
                 ) : (
@@ -110,10 +110,10 @@ export default function CommunityImports() {
               {/* Content */}
               <div className="flex-1 min-w-0">
                 <div className="flex justify-between items-start">
-                    <h3 className="font-medium text-slate-900 truncate pr-4">{post.title || 'Untitled Post'}</h3>
+                    <h3 className="font-medium text-slate-900 dark:text-white truncate pr-4">{post.title || 'Untitled Post'}</h3>
                     <span className="text-xs text-slate-400 whitespace-nowrap">{new Date(post.createdAt).toLocaleDateString()}</span>
                 </div>
-                <p className="text-sm text-slate-600 mt-1 line-clamp-2">{post.content}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300 mt-1 line-clamp-2">{post.content}</p>
                 
                 <div className="mt-3 flex items-center gap-3 text-xs">
                     {post.source?.permalink && (
@@ -126,7 +126,7 @@ export default function CommunityImports() {
               </div>
 
               {/* Actions */}
-              <div className="flex flex-col gap-2 border-l border-slate-100 pl-4 ml-2">
+              <div className="flex flex-col gap-2 border-l border-slate-100 dark:border-slate-800 pl-4 ml-2">
                 <Button 
                     size="sm" 
                     variant="primary" 

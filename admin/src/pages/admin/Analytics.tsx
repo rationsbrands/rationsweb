@@ -16,7 +16,7 @@ export default function Analytics() {
   return (
     <div className="space-y-3">
       <PageHeader title="Analytics" subtitle="Sales and orders overview" />
-      {loading && <div className="text-sm text-slate-500">Loading...</div>}
+      {loading && <div className="text-sm text-slate-500 dark:text-slate-400">Loading...</div>}
       {stats && (
         <div className="grid md:grid-cols-3 gap-3 text-sm">
           <Card header={<div className="font-semibold">Sales (total)</div>}>

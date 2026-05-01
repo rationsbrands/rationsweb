@@ -14,7 +14,7 @@ export default function ProtectedRoute({ children, requiredPermission, allowed }
   const location = useLocation()
 
   if (loading) {
-    return <div className="text-center py-10 text-sm text-slate-500">Loading...</div>
+    return <div className="text-center py-10 text-sm text-slate-500 dark:text-slate-400">Loading...</div>
   }
 
   if (!user) {

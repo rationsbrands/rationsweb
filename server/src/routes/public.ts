@@ -112,8 +112,28 @@ router.get('/menu', async (req, res) => {
         return res.status(503).json({ message: 'Menu temporarily unavailable' })
       }
     } else {
-      const items = await MenuItem.find(query).sort({ popularity: -1, createdAt: -1 })
-      return res.json({ success: true, data: items })
+      const items = await MenuItem.find(query).sort({ popularity: -1, createdAt: -1 }).lean()
+      const settings = await Settings.findOne({}).lean()
+      const promoPricingEnabled = Boolean(settings?.features?.promoPricingEnabled)
+      
+      const now = new Date()
+      function getEffectivePrice(item: any) {
+        if (!promoPricingEnabled) return item.price
+        const isActive = item.promoActive &&
+          (!item.promoStart || item.promoStart <= now) &&
+          (!item.promoEnd || item.promoEnd >= now)
+        if (!isActive) return item.price
+        if (item.promoType === 'fixed_price') return item.promoValue
+        if (item.promoType === 'percentage') return Math.round(item.price * (1 - item.promoValue / 100))
+        return item.price
+      }
+
+      const mappedItems = items.map((item: any) => ({
+        ...item,
+        effectivePrice: getEffectivePrice(item)
+      }))
+
+      return res.json({ success: true, data: mappedItems })
     }
   } catch (error) {
     console.error('GET /menu error:', error)

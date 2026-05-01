@@ -45,17 +45,17 @@ export default function InstagramCommunityFeed() {
     <div className="mt-6">
       <div className="flex items-center justify-between">
         <h3 className="font-semibold">Instagram community posts</h3>
-        {meta?.lastFetchedAt && <div className="text-xs text-slate-500">Updated {formatDate(meta.lastFetchedAt)}</div>}
+        {meta?.lastFetchedAt && <div className="text-xs text-slate-500 dark:text-slate-400">Updated {formatDate(meta.lastFetchedAt)}</div>}
       </div>
-      {loading && <p className="text-sm text-slate-500 mt-2">Loading Instagram posts…</p>}
+      {loading && <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Loading Instagram posts…</p>}
       {!loading && items.length === 0 && (
-        <p className="text-sm text-slate-500 mt-2">No community posts found for {meta?.hashtag || '#RationsCommunity'}</p>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">No community posts found for {meta?.hashtag || '#RationsCommunity'}</p>
       )}
       {!loading && items.length > 0 && (
         <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
           {items.map((it) => (
-            <a key={it.id} href={it.permalink} target="_blank" rel="noreferrer" className="bg-white border border-slate-200 rounded-xl p-2 flex gap-3">
-              <div className="w-24 h-24 shrink-0 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center">
+            <a key={it.id} href={it.permalink} target="_blank" rel="noreferrer" className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-2 flex gap-3">
+              <div className="w-24 h-24 shrink-0 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
                 {it.mediaType === 'VIDEO' ? (
                   it.thumbnailUrl ? (
                     <img src={it.thumbnailUrl} alt="" className="w-full h-full object-cover" />
@@ -71,7 +71,7 @@ export default function InstagramCommunityFeed() {
                 )}
               </div>
               <div className="text-sm">
-                <div className="text-xs text-slate-500">{formatDate(it.timestamp)}</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">{formatDate(it.timestamp)}</div>
                 <div className="line-clamp-3">{truncate(it.caption, 160)}</div>
               </div>
             </a>

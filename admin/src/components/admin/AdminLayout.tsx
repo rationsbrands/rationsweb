@@ -32,15 +32,15 @@ export default function AdminLayout({ children }: any) {
   }, [])
 
   return (
-    <div className="min-h-screen bg-slate-50 md:min-h-[calc(100vh-2rem)] md:m-4 md:border md:rounded-xl overflow-hidden flex flex-col">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 md:min-h-[calc(100vh-2rem)] md:m-4 md:border md:rounded-xl overflow-hidden flex flex-col">
       <div className="flex relative flex-1">
-        <div className={`hidden md:block border-r border-slate-200 bg-white w-64`}>
+        <div className={`hidden md:block border-r border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 w-64`}>
           <AdminSidebar onLinkClick={() => setOpen(false)} />
         </div>
         {open && (
           <div className="fixed inset-0 z-40 md:hidden">
             <div className="absolute inset-0 bg-black/30" onClick={()=>setOpen(false)} />
-            <div className="absolute left-0 top-0 h-full w-64 bg-white border-r z-50">
+            <div className="absolute left-0 top-0 h-full w-64 bg-white dark:bg-slate-900 border-r z-50">
               <AdminSidebar onLinkClick={() => setOpen(false)} />
             </div>
           </div>

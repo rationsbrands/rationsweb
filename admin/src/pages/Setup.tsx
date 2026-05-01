@@ -73,30 +73,30 @@ export default function Setup() {
   }
 
   return (
-    <div className="max-w-md mx-auto bg-white border border-slate-100 rounded-2xl shadow-sm p-8">
+    <div className="max-w-md mx-auto bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl shadow-sm p-8">
       <div className="mb-6 text-center">
-        <h1 className="text-2xl font-bold text-slate-900">Bootstrap Setup</h1>
-        <p className="text-sm text-slate-500 mt-1">Create tenant and owner</p>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Bootstrap Setup</h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Create tenant and owner</p>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm mb-1 text-slate-700">Tenant Name</label>
+          <label className="block text-sm mb-1 text-slate-700 dark:text-slate-200">Tenant Name</label>
           <input name="tenantName" type="text" value={form.tenantName} onChange={handleChange} className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-ration-yellow focus:outline-none" required />
         </div>
         <div>
-          <label className="block text-sm mb-1 text-slate-700">Owner Name</label>
+          <label className="block text-sm mb-1 text-slate-700 dark:text-slate-200">Owner Name</label>
           <input name="ownerName" type="text" value={form.ownerName} onChange={handleChange} className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-ration-yellow focus:outline-none" required />
         </div>
         <div>
-          <label className="block text-sm mb-1 text-slate-700">Owner Email</label>
+          <label className="block text-sm mb-1 text-slate-700 dark:text-slate-200">Owner Email</label>
           <input name="ownerEmail" type="email" value={form.ownerEmail} onChange={handleChange} className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-ration-yellow focus:outline-none" required />
         </div>
         <div>
-          <label className="block text-sm mb-1 text-slate-700">Owner Password</label>
+          <label className="block text-sm mb-1 text-slate-700 dark:text-slate-200">Owner Password</label>
           <input name="ownerPassword" type="password" value={form.ownerPassword} onChange={handleChange} className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-ration-yellow focus:outline-none" required />
         </div>
         <div>
-          <label className="block text-sm mb-1 text-slate-700">Bootstrap Token (optional)</label>
+          <label className="block text-sm mb-1 text-slate-700 dark:text-slate-200">Bootstrap Token (optional)</label>
           <input name="bootstrapToken" type="text" value={form.bootstrapToken} onChange={handleChange} className="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-ration-yellow focus:outline-none" />
         </div>
         {error && <p className="text-xs text-red-500">{error}</p>}

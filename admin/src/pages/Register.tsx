@@ -76,7 +76,7 @@ export default function Register() {
   }
 
   return (
-    <div className="max-w-md mx-auto bg-white border border-slate-100 rounded-2xl shadow-sm p-6">
+    <div className="max-w-md mx-auto bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl shadow-sm p-6">
       <h1 className="text-xl font-semibold mb-4">Create account</h1>
       <form onSubmit={otpPhase ? handleVerify : handleSubmit} className="space-y-3">
         <FormInput
@@ -115,8 +115,8 @@ export default function Register() {
               placeholder="6-digit code"
             />
             <div className="mt-2 flex items-center gap-2">
-              <button type="button" onClick={handleResend} disabled={cooldown>0} className="text-sm px-3 py-2 rounded-lg border border-slate-300 disabled:opacity-60 min-h-[44px]">Resend Code</button>
-              <span className="text-xs text-slate-600">Resend available in: {cooldown}s</span>
+              <button type="button" onClick={handleResend} disabled={cooldown>0} className="text-sm px-3 py-2 rounded-lg border border-slate-300 dark:border-slate-600 disabled:opacity-60 min-h-[44px]">Resend Code</button>
+              <span className="text-xs text-slate-600 dark:text-slate-300">Resend available in: {cooldown}s</span>
             </div>
           </div>
         )}
@@ -125,7 +125,7 @@ export default function Register() {
           {loading ? (otpPhase ? 'Verifying...' : 'Creating account...') : (otpPhase ? 'Verify Code' : 'Sign up')}
         </Button>
       </form>
-      <p className="mt-3 text-xs text-slate-600">
+      <p className="mt-3 text-xs text-slate-600 dark:text-slate-300">
         Already have an account?{' '}
         <Link to="/login" className="text-primary-600 font-medium">Login</Link>
       </p>

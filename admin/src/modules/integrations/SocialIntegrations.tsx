@@ -290,7 +290,7 @@ export default function SocialIntegrations() {
     )
   }
 
-  if (loading && !status) return <div className="p-8 text-center text-slate-500">Loading social settings...</div>
+  if (loading && !status) return <div className="p-8 text-center text-slate-500 dark:text-slate-400">Loading social settings...</div>
 
   return (
     <div className="max-w-4xl mx-auto space-y-6 pb-20">
@@ -307,29 +307,29 @@ export default function SocialIntegrations() {
 
 
       {/* -------------------- Instagram -------------------- */}
-      <div className="rounded-xl border border-slate-200 bg-white p-4">
+      <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-lg font-semibold text-slate-900">Instagram</h3>
-            <p className="mt-1 text-sm text-slate-600">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Instagram</h3>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
               Connect a Business/Creator account and auto-publish posts into Community.
             </p>
 
-            <div className="mt-2 text-xs text-slate-600 flex items-center gap-2">
+            <div className="mt-2 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-2">
               <span>Status:</span>
               {igConfigured ? (
                 <span className="font-medium text-emerald-700">
                   Connected {igConnectedName ? `(${igConnectedName})` : ''}
                 </span>
               ) : (
-                <span className="font-medium text-slate-700">Not connected</span>
+                <span className="font-medium text-slate-700 dark:text-slate-200">Not connected</span>
               )}
               {getTokenHealthBadge()}
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="text-sm text-slate-700">Enabled</label>
+            <label className="text-sm text-slate-700 dark:text-slate-200">Enabled</label>
             <input
               type="checkbox"
               checked={igEnabled}
@@ -341,26 +341,26 @@ export default function SocialIntegrations() {
 
         <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-slate-700">Hashtag filter (optional)</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Hashtag filter (optional)</label>
             <input
               value={igHashtag}
               onChange={(e) => setIgHashtag(e.target.value)}
               placeholder="#rationscommunity"
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+              className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm"
             />
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
               Only import posts whose caption contains this hashtag.
             </p>
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700">Auto-publish hashtag (optional)</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Auto-publish hashtag (optional)</label>
             <input
               value={igAutoPublishHashtag}
               onChange={(e) => setIgAutoPublishHashtag(e.target.value)}
               placeholder="#rationsapproved (leave blank to publish all)"
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+              className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm"
             />
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
               When auto-publish is on, posts are published only if they contain this hashtag. Leave blank to publish everything you import.
             </p>
           </div>
@@ -368,26 +368,26 @@ export default function SocialIntegrations() {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-sm font-medium text-slate-700">Max per sync</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Max per sync</label>
               <input
                 value={igMaxPerRun}
                 onChange={(e) => setIgMaxPerRun(Number(e.target.value || 0))}
                 type="number"
                 min={1}
                 max={50}
-                className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700">Sync interval (mins)</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Sync interval (mins)</label>
               <input
                 value={igSyncInterval}
                 onChange={(e) => setIgSyncInterval(Number(e.target.value || 0))}
                 type="number"
                 min={5}
                 max={1440}
-                className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm"
               />
             </div>
           </div>
@@ -402,7 +402,7 @@ export default function SocialIntegrations() {
               onChange={(e) => setIgAutoPublish(e.target.checked)}
               className="h-4 w-4"
             />
-            <label htmlFor="igAutoPublish" className="text-sm text-slate-700">
+            <label htmlFor="igAutoPublish" className="text-sm text-slate-700 dark:text-slate-200">
               Auto-publish to Community
             </label>
           </div>
@@ -453,24 +453,24 @@ export default function SocialIntegrations() {
         </div>
 
         {showLogs && (
-          <div className="mt-4 border-t border-slate-100 pt-4">
-            <h4 className="text-sm font-medium text-slate-900 mb-2">Sync Logs</h4>
+          <div className="mt-4 border-t border-slate-100 dark:border-slate-800 pt-4">
+            <h4 className="text-sm font-medium text-slate-900 dark:text-white mb-2">Sync Logs</h4>
             {logsLoading ? (
-              <div className="text-sm text-slate-500">Loading logs...</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">Loading logs...</div>
             ) : logs.length === 0 ? (
-              <div className="text-sm text-slate-500">No logs found.</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">No logs found.</div>
             ) : (
               <div className="max-h-60 overflow-y-auto space-y-2">
                 {logs.map((log: any, i: number) => (
                   <div key={i} className="text-xs border-b border-slate-50 pb-1 last:border-0">
-                    <div className="flex justify-between text-slate-500">
+                    <div className="flex justify-between text-slate-500 dark:text-slate-400">
                       <span>{new Date(log.timestamp).toLocaleString()}</span>
                       <span className={log.status === 'success' ? 'text-green-600' : 'text-red-600'}>
                         {log.status}
                       </span>
                     </div>
-                    <div className="text-slate-700 mt-1">{log.message}</div>
-                    {log.details && <pre className="mt-1 text-[10px] bg-slate-50 p-1 rounded overflow-x-auto">{JSON.stringify(log.details, null, 2)}</pre>}
+                    <div className="text-slate-700 dark:text-slate-200 mt-1">{log.message}</div>
+                    {log.details && <pre className="mt-1 text-[10px] bg-slate-50 dark:bg-slate-950 p-1 rounded overflow-x-auto">{JSON.stringify(log.details, null, 2)}</pre>}
                   </div>
                 ))}
               </div>
@@ -480,28 +480,28 @@ export default function SocialIntegrations() {
       </div>
 
       {/* -------------------- YouTube -------------------- */}
-      <div className="rounded-xl border border-slate-200 bg-white p-4">
+      <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-lg font-semibold text-slate-900">YouTube</h3>
-            <p className="mt-1 text-sm text-slate-600">
+            <h3 className="text-lg font-semibold text-slate-900 dark:text-white">YouTube</h3>
+            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
               Pull videos from a playlist and auto-publish them into Community.
             </p>
             
-            <div className="mt-2 text-xs text-slate-600 flex items-center gap-2">
+            <div className="mt-2 text-xs text-slate-600 dark:text-slate-300 flex items-center gap-2">
               <span>Status:</span>
               {(ytMode === 'oauth' ? ytConnected : ytConfigured) ? (
                 <span className="font-medium text-emerald-700">
                   {ytMode === 'oauth' ? `Connected ${ytChannelName ? `(${ytChannelName})` : ''}` : 'Connected (API Key)'}
                 </span>
               ) : (
-                <span className="font-medium text-slate-700">Not connected</span>
+                <span className="font-medium text-slate-700 dark:text-slate-200">Not connected</span>
               )}
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <label className="text-sm text-slate-700">Enabled</label>
+            <label className="text-sm text-slate-700 dark:text-slate-200">Enabled</label>
             <input
               type="checkbox"
               checked={ytEnabled}
@@ -511,8 +511,8 @@ export default function SocialIntegrations() {
           </div>
         </div>
 
-        <div className="mt-4 border-b border-slate-100 pb-4 mb-4">
-          <label className="text-sm font-medium text-slate-700 block mb-2">Authentication Method</label>
+        <div className="mt-4 border-b border-slate-100 dark:border-slate-800 pb-4 mb-4">
+          <label className="text-sm font-medium text-slate-700 dark:text-slate-200 block mb-2">Authentication Method</label>
           <div className="flex items-center gap-4">
             <label className="flex items-center gap-2 text-sm cursor-pointer">
               <input
@@ -520,7 +520,7 @@ export default function SocialIntegrations() {
                 name="ytMode"
                 checked={ytMode === 'api_key'}
                 onChange={() => setYtMode('api_key')}
-                className="text-slate-900 focus:ring-slate-500"
+                className="text-slate-900 dark:text-white focus:ring-slate-500"
               />
               <span>API Key (Manual)</span>
             </label>
@@ -530,7 +530,7 @@ export default function SocialIntegrations() {
                 name="ytMode"
                 checked={ytMode === 'oauth'}
                 onChange={() => setYtMode('oauth')}
-                className="text-slate-900 focus:ring-slate-500"
+                className="text-slate-900 dark:text-white focus:ring-slate-500"
               />
               <span>OAuth (Connect Account)</span>
             </label>
@@ -540,14 +540,14 @@ export default function SocialIntegrations() {
         <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
           {ytMode === 'api_key' ? (
             <div>
-              <label className="block text-sm font-medium text-slate-700">API Key</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">API Key</label>
               <div className="flex gap-2 mt-1">
                 <input
                   value={ytApiKey}
                   onChange={(e) => setYtApiKey(e.target.value)}
                   placeholder={ytConfigured ? "••••••••••••••••" : "AIzaSy..."}
                   type="password"
-                  className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                  className="flex-1 rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm"
                 />
                 {ytConfigured && (
                   <Button variant="outline" onClick={disconnectYouTube} size="sm">
@@ -555,13 +555,13 @@ export default function SocialIntegrations() {
                   </Button>
                 )}
               </div>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
                 Stored securely. Required for fetching public playlists.
               </p>
             </div>
           ) : (
              <div>
-              <label className="block text-sm font-medium text-slate-700">Account</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Account</label>
               <div className="mt-1">
                 {!ytConnected ? (
                   <Button variant="primary" onClick={connectYouTubeOAuth} size="sm">
@@ -569,7 +569,7 @@ export default function SocialIntegrations() {
                   </Button>
                 ) : (
                   <div className="flex items-center gap-2">
-                     <div className="text-sm text-slate-900 border px-3 py-2 rounded-lg bg-slate-50 flex-1">
+                     <div className="text-sm text-slate-900 dark:text-white border px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-950 flex-1">
                         {ytChannelName || 'Connected'}
                      </div>
                      <Button variant="outline" onClick={disconnectYouTube} size="sm">
@@ -578,60 +578,60 @@ export default function SocialIntegrations() {
                   </div>
                 )}
               </div>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
                 Connect your Google account to access private playlists or uploads.
               </p>
              </div>
           )}
 
           <div>
-            <label className="block text-sm font-medium text-slate-700">Playlist ID</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Playlist ID</label>
             <input
               value={ytPlaylistId}
               onChange={(e) => setYtPlaylistId(e.target.value)}
               placeholder="PLxxxxxxxxxxxxxxxx"
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+              className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm"
             />
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
               Tip: Use your channel’s “Uploads” playlist ID.
             </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700">Filter keyword (optional)</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Filter keyword (optional)</label>
             <input
               value={ytFilterKeyword}
               onChange={(e) => setYtFilterKeyword(e.target.value)}
               placeholder="e.g. rations"
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+              className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm"
             />
-            <p className="mt-1 text-xs text-slate-500">
+            <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
               Only import videos whose title/description contains this text.
             </p>
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-sm font-medium text-slate-700">Max per sync</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Max per sync</label>
               <input
                 value={ytMaxPerRun}
                 onChange={(e) => setYtMaxPerRun(Number(e.target.value || 0))}
                 type="number"
                 min={1}
                 max={50}
-                className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700">Sync interval (mins)</label>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-200">Sync interval (mins)</label>
               <input
                 value={ytSyncInterval}
                 onChange={(e) => setYtSyncInterval(Number(e.target.value || 0))}
                 type="number"
                 min={5}
                 max={1440}
-                className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+                className="mt-1 w-full rounded-lg border border-slate-300 dark:border-slate-600 px-3 py-2 text-sm"
               />
             </div>
           </div>
@@ -646,7 +646,7 @@ export default function SocialIntegrations() {
               onChange={(e) => setYtAutoPublish(e.target.checked)}
               className="h-4 w-4"
             />
-            <label htmlFor="ytAutoPublish" className="text-sm text-slate-700">
+            <label htmlFor="ytAutoPublish" className="text-sm text-slate-700 dark:text-slate-200">
               Auto-publish to Community
             </label>
           </div>

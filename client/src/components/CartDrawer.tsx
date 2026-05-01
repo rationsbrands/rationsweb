@@ -25,20 +25,20 @@ export default function CartDrawer({ open, onClose, items = [] }: any) {
 
       {/* Drawer */}
       <div
-        className="absolute top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl p-3 sm:p-6 flex flex-col border-l border-gray-200"
+        className="absolute top-0 right-0 h-full w-full max-w-md bg-white dark:bg-slate-900 shadow-2xl p-3 sm:p-6 flex flex-col border-l border-gray-200 dark:border-gray-700"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex justify-between items-center mb-3 sm:mb-4">
           <h2 className="text-base sm:text-xl font-bold">Your Cart</h2>
-          <button className="text-xs sm:text-sm text-slate-600" onClick={onClose}>
+          <button className="text-xs sm:text-sm text-slate-600 dark:text-slate-300" onClick={onClose}>
             Close
           </button>
         </div>
 
         {/* Items */}
         {items.length === 0 ? (
-          <div className="flex-1 flex items-center justify-center text-slate-500 text-sm">
+          <div className="flex-1 flex items-center justify-center text-slate-500 dark:text-slate-400 text-sm">
             Your cart is empty.
           </div>
         ) : (
@@ -60,11 +60,11 @@ export default function CartDrawer({ open, onClose, items = [] }: any) {
 
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-sm sm:text-base leading-tight">{i.menuItem.name}</div>
-                      <div className="text-[10px] sm:text-sm font-semibold text-gray-700 mt-0.5">
+                      <div className="text-[10px] sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mt-0.5">
                         ₦{(i.menuItem.price * i.quantity).toLocaleString()}
                       </div>
                       {i.sauce && (
-                        <div className="mt-1 text-[10px] text-slate-600 flex items-center gap-1 sm:gap-2">
+                        <div className="mt-1 text-[10px] text-slate-600 dark:text-slate-300 flex items-center gap-1 sm:gap-2">
                           <span>Sauce:</span>
                           <select
                             value={i.sauce}
@@ -90,7 +90,7 @@ export default function CartDrawer({ open, onClose, items = [] }: any) {
                             updateQuantity(i.menuItem._id, newQty, i.sauce)
                           }
                         }}
-                        className="p-1 rounded bg-gray-100 hover:bg-gray-200 h-6 w-6 sm:h-auto sm:w-auto flex items-center justify-center"
+                        className="p-1 rounded bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 h-6 w-6 sm:h-auto sm:w-auto flex items-center justify-center"
                       >
                         <FaMinus size={10} />
                       </button>
@@ -99,7 +99,7 @@ export default function CartDrawer({ open, onClose, items = [] }: any) {
                         onClick={() =>
                           updateQuantity(i.menuItem._id, i.quantity + 1, i.sauce)
                         }
-                        className="p-1 rounded bg-gray-100 hover:bg-gray-200 h-6 w-6 sm:h-auto sm:w-auto flex items-center justify-center"
+                        className="p-1 rounded bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 h-6 w-6 sm:h-auto sm:w-auto flex items-center justify-center"
                       >
                         <FaPlus size={10} />
                       </button>
@@ -119,7 +119,7 @@ export default function CartDrawer({ open, onClose, items = [] }: any) {
             {/* Clear cart button */}
             <div className="mt-3 flex justify-between">
               <button
-                className="py-2 px-4 rounded bg-gray-200 hover:bg-gray-300 text-xs font-semibold"
+                className="py-2 px-4 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 text-xs font-semibold"
                 onClick={clearCart}
               >
                 Clear Cart
@@ -150,7 +150,7 @@ export default function CartDrawer({ open, onClose, items = [] }: any) {
             </button>
           </div>
           <div className="mt-3 ">
-            <Link to="/cart" onClick={onClose} className="text-xs text-slate-700">Go to cart</Link>
+            <Link to="/cart" onClick={onClose} className="text-xs text-slate-700 dark:text-slate-200">Go to cart</Link>
           </div>
                     <div className="flex gap-2 py-2">
             {/* <Link
@@ -161,7 +161,7 @@ export default function CartDrawer({ open, onClose, items = [] }: any) {
               Checkout
             </Link> */}
             <button
-              className="px-4 py-3 sm:py-2 rounded-full border border-slate-300 text-base sm:text-sm"
+              className="px-4 py-3 sm:py-2 rounded-full border border-slate-300 dark:border-slate-600 text-base sm:text-sm"
               onClick={onClose}
             >
               Continue

@@ -397,7 +397,7 @@ const handleOauthConnect = async () => {
     <div className="max-w-2xl mx-auto space-y-6 pb-20">
       <PageHeader title="Integrations" subtitle="Manage external services and platform connection" />
 
-      {loading && <p className="text-sm text-slate-500">Loading...</p>}
+      {loading && <p className="text-sm text-slate-500 dark:text-slate-400">Loading...</p>}
 
       {error && (
         <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm flex items-center gap-2">
@@ -414,19 +414,19 @@ const handleOauthConnect = async () => {
       {!loading && (
         <>
           {/* PLATFORM */}
-          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-5 shadow-sm">
             <div className="flex justify-between items-center mb-6">
               <div className="flex items-center gap-2">
                 <Shield className="text-slate-400" size={24} />
                 <div>
-                  <h3 className="font-semibold text-lg text-slate-800">Platform Integration</h3>
-                  <p className="text-sm text-slate-500">OAuth + Webhooks + API Key fallback.</p>
+                  <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Platform Integration</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">OAuth + Webhooks + API Key fallback.</p>
                 </div>
               </div>
 
               <div
                 className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 ${
-                  isConnected ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'
+                  isConnected ? 'bg-green-100 text-green-700' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
                 }`}
               >
                 {isConnected ? <CheckCircle2 size={14} /> : <XCircle size={14} />}
@@ -453,49 +453,49 @@ const handleOauthConnect = async () => {
               </div>
 
               {/* Feature Toggles */}
-              <div className="bg-slate-50 p-4 rounded-lg space-y-3 border border-slate-100">
-                <span className="text-sm font-medium text-slate-900 block">Feature Toggles</span>
+              <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-lg space-y-3 border border-slate-100 dark:border-slate-800">
+                <span className="text-sm font-medium text-slate-900 dark:text-white block">Feature Toggles</span>
 
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 text-slate-900 rounded"
+                    className="w-4 h-4 text-slate-900 dark:text-white rounded"
                     checked={features.orders}
                     onChange={(e) => setFeatures((prev) => ({ ...prev, orders: e.target.checked }))}
                   />
-                  <span className="text-sm text-slate-700">Orders (Sync orders)</span>
+                  <span className="text-sm text-slate-700 dark:text-slate-200">Orders (Sync orders)</span>
                 </label>
 
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 text-slate-900 rounded"
+                    className="w-4 h-4 text-slate-900 dark:text-white rounded"
                     checked={features.kds}
                     onChange={(e) => setFeatures((prev) => ({ ...prev, kds: e.target.checked }))}
                   />
-                  <span className="text-sm text-slate-700">KDS (Tickets / kitchen)</span>
+                  <span className="text-sm text-slate-700 dark:text-slate-200">KDS (Tickets / kitchen)</span>
                 </label>
 
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 text-slate-900 rounded"
+                    className="w-4 h-4 text-slate-900 dark:text-white rounded"
                     checked={features.catalog}
                     onChange={(e) => setFeatures((prev) => ({ ...prev, catalog: e.target.checked }))}
                   />
-                  <span className="text-sm text-slate-700">Catalog (Menu sync)</span>
+                  <span className="text-sm text-slate-700 dark:text-slate-200">Catalog (Menu sync)</span>
                 </label>
               </div>
 
               {/* OAuth */}
-              <div className="border border-slate-200 rounded-xl p-4">
+              <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <Lock size={18} className="text-slate-500" />
-                      <h4 className="font-semibold text-slate-800">OAuth (Recommended)</h4>
+                      <Lock size={18} className="text-slate-500 dark:text-slate-400" />
+                      <h4 className="font-semibold text-slate-800 dark:text-slate-100">OAuth (Recommended)</h4>
                     </div>
-                    <p className="text-sm text-slate-500 mt-1">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
                       Secure connection with per-user permissions. Clicking connect opens Platform login.
                     </p>
                   </div>
@@ -515,35 +515,35 @@ const handleOauthConnect = async () => {
                     onChange={(e: any) => setScopes(e.target.value)}
                     placeholder="catalog:read, orders:read, orders:write"
                   />
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                     If OAuth start returns 404, your backend endpoint isn’t implemented yet.
                   </p>
                 </div>
               </div>
 
               {/* Webhooks (URL + INPUT FORM) */}
-              <div className="border border-slate-200 rounded-xl p-4">
+              <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <Webhook size={18} className="text-slate-500" />
-                      <h4 className="font-semibold text-slate-800">Webhooks (Real-time)</h4>
+                      <Webhook size={18} className="text-slate-500 dark:text-slate-400" />
+                      <h4 className="font-semibold text-slate-800 dark:text-slate-100">Webhooks (Real-time)</h4>
                     </div>
-                    <p className="text-sm text-slate-500 mt-1">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
                       Platform pushes events instantly (order status, inventory alerts, etc).
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-3 bg-slate-50 border border-slate-100 rounded-lg p-3 text-sm">
+                <div className="mt-3 bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 rounded-lg p-3 text-sm">
                   <div className="flex justify-between gap-4">
-                    <span className="text-slate-500">Webhook URL</span>
-                    <span className="font-mono text-xs break-all text-slate-700">{webhookUrl}</span>
+                    <span className="text-slate-500 dark:text-slate-400">Webhook URL</span>
+                    <span className="font-mono text-xs break-all text-slate-700 dark:text-slate-200">{webhookUrl}</span>
                   </div>
 
                   <div className="flex justify-between gap-4 mt-2">
-                    <span className="text-slate-500">Configured</span>
-                    <span className="text-slate-700">
+                    <span className="text-slate-500 dark:text-slate-400">Configured</span>
+                    <span className="text-slate-700 dark:text-slate-200">
                       {authBadge.hasWebhook ? (
                         <span className="text-green-600 font-medium">Yes</span>
                       ) : (
@@ -573,7 +573,7 @@ const handleOauthConnect = async () => {
                     <Button variant="outline" type="button" onClick={handleSaveWebhookSecret} disabled={savingWebhook}>
                       {savingWebhook ? 'Saving...' : 'Save Settings'}
                     </Button>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                       If backend endpoint isn’t implemented, use env-only: <span className="font-mono">PLATFORM_WEBHOOK_SECRET</span>
                     </p>
                   </div>
@@ -581,14 +581,14 @@ const handleOauthConnect = async () => {
               </div>
 
               {/* API Key block */}
-              <div className="border border-slate-200 rounded-xl p-4">
+              <div className="border border-slate-200 dark:border-slate-700 rounded-xl p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <Key size={18} className="text-slate-500" />
-                      <h4 className="font-semibold text-slate-800">API Key (Fallback)</h4>
+                      <Key size={18} className="text-slate-500 dark:text-slate-400" />
+                      <h4 className="font-semibold text-slate-800 dark:text-slate-100">API Key (Fallback)</h4>
                     </div>
-                    <p className="text-sm text-slate-500 mt-1">
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
                       Use this if OAuth isn’t ready. Leave blank to keep the existing key.
                     </p>
                   </div>
@@ -603,7 +603,7 @@ const handleOauthConnect = async () => {
                     placeholder={platformStatus?.hasApiKey ? '••••••••••••••••' : 'iak_<id>.<secret>'}
                   />
                   {platformStatus?.hasApiKey && !apiKey && (
-                    <p className="text-xs text-slate-500">Leave blank to keep existing key.</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Leave blank to keep existing key.</p>
                   )}
 
                   <div className="flex items-center gap-3 pt-1">
@@ -644,7 +644,7 @@ const handleOauthConnect = async () => {
                           setError(e?.response?.data?.message || 'Failed to fetch Platform logs')
                         }
                       }}
-                      className="px-4 py-2 rounded-lg text-sm font-medium text-slate-700 border border-slate-200 hover:bg-slate-50 transition-colors"
+                      className="px-4 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                     >
                       View Logs
                     </button>
@@ -655,7 +655,7 @@ const handleOauthConnect = async () => {
                         await loadJobs()
                         setShowJobs(true)
                       }}
-                      className="px-4 py-2 rounded-lg text-sm font-medium text-slate-700 border border-slate-200 hover:bg-slate-50 transition-colors"
+                      className="px-4 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                     >
                       View Jobs
                     </button>
@@ -673,10 +673,10 @@ const handleOauthConnect = async () => {
               </div>
 
               {showPlatformLogs && (
-                <div className="mt-3 border border-slate-200 rounded-lg overflow-hidden">
-                  <div className="px-3 py-2 text-xs bg-slate-50 border-b border-slate-200 flex justify-between items-center">
-                    <span className="font-semibold text-slate-600">Last 50 Logs</span>
-                    <button className="text-slate-500 text-xs" onClick={() => setShowPlatformLogs(false)}>
+                <div className="mt-3 border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
+                  <div className="px-3 py-2 text-xs bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                    <span className="font-semibold text-slate-600 dark:text-slate-300">Last 50 Logs</span>
+                    <button className="text-slate-500 dark:text-slate-400 text-xs" onClick={() => setShowPlatformLogs(false)}>
                       Hide
                     </button>
                   </div>
@@ -685,9 +685,9 @@ const handleOauthConnect = async () => {
                       <div className="p-3 text-slate-400">No logs</div>
                     ) : (
                       platformLogs.map((l: any, idx: number) => (
-                        <div key={idx} className="p-3 border-b border-slate-100">
+                        <div key={idx} className="p-3 border-b border-slate-100 dark:border-slate-800">
                           <div className="flex justify-between">
-                            <span className="text-slate-600">{l.message || l.event || 'Event'}</span>
+                            <span className="text-slate-600 dark:text-slate-300">{l.message || l.event || 'Event'}</span>
                             <span className="text-slate-400">
                               {l.createdAt ? new Date(l.createdAt).toLocaleString() : ''}
                             </span>
@@ -703,9 +703,9 @@ const handleOauthConnect = async () => {
           </div>
 
           {/* THIRD-PARTY SERVICES */}
-          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-4">
-            <h3 className="font-semibold text-lg text-slate-800">Third-Party Services</h3>
-            <p className="text-sm text-slate-500">Payments, messaging and logistics providers.</p>
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-5 shadow-sm space-y-4">
+            <h3 className="font-semibold text-lg text-slate-800 dark:text-slate-100">Third-Party Services</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Payments, messaging and logistics providers.</p>
 
             <div className="grid md:grid-cols-2 gap-4">
               <SelectInput
@@ -751,17 +751,17 @@ const handleOauthConnect = async () => {
       {/* Jobs drawer */}
       {showJobs && (
         <div className="fixed inset-0 bg-black/20 flex items-end">
-          <div className="w-full md:w-[720px] bg-white rounded-t-xl border border-slate-200 shadow-lg">
+          <div className="w-full md:w-[720px] bg-white dark:bg-slate-900 rounded-t-xl border border-slate-200 dark:border-slate-700 shadow-lg">
             <div className="px-4 py-3 border-b flex justify-between items-center">
               <div className="font-semibold">Sync Jobs</div>
-              <button className="text-sm text-slate-600" onClick={() => setShowJobs(false)}>
+              <button className="text-sm text-slate-600 dark:text-slate-300" onClick={() => setShowJobs(false)}>
                 Close
               </button>
             </div>
             <div className="p-4 max-h-[60vh] overflow-auto text-sm">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="text-slate-500 text-xs">
+                  <tr className="text-slate-500 dark:text-slate-400 text-xs">
                     <th className="text-left p-2">Order</th>
                     <th className="text-left p-2">Action</th>
                     <th className="text-left p-2">Status</th>

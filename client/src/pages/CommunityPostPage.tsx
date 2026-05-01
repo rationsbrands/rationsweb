@@ -95,11 +95,11 @@ export default function CommunityPostPage() {
           <div className="text-sm font-semibold text-[#0C1E22]">
             {post.createdBy?.name || 'Rations Community'}
           </div>
-          <div className="text-xs text-slate-500">
+          <div className="text-xs text-slate-500 dark:text-slate-400">
             {new Date(post.publishedAt || post.createdAt).toLocaleString()}
           </div>
         </div>
-        <div className="text-[10px] uppercase tracking-wide text-slate-500">{post.tag}</div>
+        <div className="text-[10px] uppercase tracking-wide text-slate-500 dark:text-slate-400">{post.tag}</div>
       </div>
 
       <h1 className="text-xl sm:text-3xl font-bold text-[#0C1E22]">{post.title}</h1>
@@ -112,20 +112,20 @@ export default function CommunityPostPage() {
       />
 
       {post.mediaUrl && post.mediaTitle && (
-        <div className="text-xs text-slate-500 mt-1">{post.mediaTitle}</div>
+        <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{post.mediaTitle}</div>
       )}
 
       {/* ✅ LINKIFIED CONTENT */}
-      <div className="text-sm sm:text-base leading-relaxed text-slate-800 whitespace-pre-line">
+      <div className="text-sm sm:text-base leading-relaxed text-slate-800 dark:text-slate-100 whitespace-pre-line">
         {linkify(post.content || '')}
       </div>
 
       <div className="mt-6 flex items-center gap-2">
-        <button className="text-sm font-medium px-4 py-2 min-h-[44px] rounded-lg border border-slate-300 hover:bg-slate-50 transition-colors" onClick={report} disabled={actionLoading}>
+        <button className="text-sm font-medium px-4 py-2 min-h-[44px] rounded-lg border border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" onClick={report} disabled={actionLoading}>
           {actionLoading ? 'Reporting...' : 'Report'}
         </button>
 
-        {actionMsg && <span className="text-xs text-slate-600 ml-2">{actionMsg}</span>}
+        {actionMsg && <span className="text-xs text-slate-600 dark:text-slate-300 ml-2">{actionMsg}</span>}
       </div>
     </article>
   )
