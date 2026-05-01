@@ -32,30 +32,30 @@ export default function AdminLayout({ children }: any) {
   }, [])
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 md:min-h-[calc(100vh-2rem)] md:m-4 md:border md:rounded-xl overflow-hidden flex flex-col">
-      <div className="flex relative flex-1">
-        <div className={`hidden md:block border-r border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 w-64`}>
+    <div className="h-screen bg-slate-50 dark:bg-slate-950 md:h-[calc(100vh-2rem)] md:m-4 md:border md:rounded-xl overflow-hidden flex flex-col">
+      <div className="flex relative flex-1 overflow-hidden">
+        <div className={`hidden md:flex flex-col border-r border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 w-64 overflow-y-auto`}>
           <AdminSidebar onLinkClick={() => setOpen(false)} />
         </div>
         {open && (
           <div className="fixed inset-0 z-40 md:hidden">
             <div className="absolute inset-0 bg-black/30" onClick={()=>setOpen(false)} />
-            <div className="absolute left-0 top-0 h-full w-64 bg-white dark:bg-slate-900 border-r z-50">
+            <div className="absolute left-0 top-0 h-full w-64 bg-white dark:bg-slate-900 border-r z-50 overflow-y-auto flex flex-col">
               <AdminSidebar onLinkClick={() => setOpen(false)} />
             </div>
           </div>
         )}
-        <div className="flex-1">
-          <div style={{ borderTopColor: branding.primaryColor || undefined }}>
+        <div className="flex-1 overflow-y-auto flex flex-col">
+          <div className="shrink-0" style={{ borderTopColor: branding.primaryColor || undefined }}>
             <AdminTopbar onToggleSidebar={() => setOpen(v=>!v)} />
           </div>
           {platformError && (
-             <div className="bg-red-50 text-red-700 px-4 py-2 text-sm text-center border-b border-red-100 flex justify-between items-center">
+             <div className="shrink-0 bg-red-50 text-red-700 px-4 py-2 text-sm text-center border-b border-red-100 flex justify-between items-center">
                <span><strong>Platform Sync Error:</strong> {platformError}</span>
                <button onClick={() => setPlatformError(null)} className="text-red-500 hover:text-red-800 text-xs">&times;</button>
              </div>
           )}
-          <div className="p-4 max-w-6xl mx-auto">{children}</div>
+          <div className="p-4 max-w-6xl mx-auto w-full flex-1">{children}</div>
         </div>
       </div>
     </div>
