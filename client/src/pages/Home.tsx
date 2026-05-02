@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <div className="space-y-8 sm:space-y-12 md:space-y-16 pb-8 sm:pb-12">
       <SEO
-        title="Fast Food Done Right"
+        title="Rations - Made for you. Real food, ready when you are."
         description="Rations is a fast food brand for people who want real meals, not compromises. Hot food, ready when you are. Order now at rationsfood.com."
         canonicalUrl="/"
       />
