@@ -12,12 +12,16 @@ fetch('/api/health').then(() => {
   console.warn('Platform API health error:', err?.message || err)
 })
 
+import { HelmetProvider } from 'react-helmet-async'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>,
 )

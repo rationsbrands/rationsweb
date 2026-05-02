@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import SEO from '../components/SEO'
 import useEmblaCarousel from 'embla-carousel-react'
 import api from '../api/api'
 import MenuItemCard from '../components/MenuItemCard'
@@ -73,6 +74,11 @@ export default function Menu({ embed = false }: any) {
   // FULL MENU PAGE
   return (
     <div>
+      <SEO 
+        title="Menu" 
+        description="Explore the Rations menu. Delicious, affordable, and fresh fast food."
+        canonicalUrl="/menu"
+      />
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4">
         <h1 className="text-2xl font-bold">Menu</h1>
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">

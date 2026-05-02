@@ -1,5 +1,6 @@
 import { SITE } from '../config/site'
 import ContactIllustration from '../assets/undraw_contact-us_kcoa 1-PvdDtSNb.svg'
+import SEO from '../components/SEO'
 
 export default function Contact() {
   const email = SITE.contacts.email
@@ -9,6 +10,11 @@ export default function Contact() {
 
   return (
     <section className="bg-[#F9FAFB] dark:bg-slate-950 py-6 sm:py-10">
+      <SEO 
+        title="Contact Us" 
+        description="Get in touch with Rations. Reach out by email, phone, WhatsApp, or visit our location."
+        canonicalUrl="/contact"
+      />
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
   {/* Page Header */}
         <h1 className="text-2xl sm:text-4xl font-extrabold text-center text-ration-dark dark:text-white mb-6 sm:mb-14">
@@ -81,7 +87,8 @@ export default function Contact() {
           <div className="flex justify-center">
             <img
               src={ContactIllustration}
-              alt="Contact illustration"
+              alt="Rations Contact illustration"
+              loading="lazy"
               className="max-w-full h-auto rounded-xl shadow-sm hover:shadow-md transition-shadow"
             />
           </div>

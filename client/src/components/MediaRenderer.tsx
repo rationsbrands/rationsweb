@@ -144,7 +144,7 @@ export default function MediaRenderer({ url, title = '', variant = 'list', image
         <div className="w-full overflow-hidden bg-slate-100 dark:bg-[#0C1E22] flex items-center justify-center">
           <img 
             src={imageFallback} 
-            alt={title} 
+            alt={title ? (title.toLowerCase().includes('rations') ? title : `Rations ${title}`) : 'Rations media content'} 
             className={mediaClasses}
             loading="lazy"
           />
@@ -194,7 +194,7 @@ export default function MediaRenderer({ url, title = '', variant = 'list', image
       <div className="w-full overflow-hidden bg-slate-100 dark:bg-[#0C1E22] flex items-center justify-center">
         <img 
           src={parsed.url} 
-          alt={title} 
+          alt={title ? (title.toLowerCase().includes('rations') ? title : `Rations ${title}`) : 'Rations media content'} 
           className={mediaClasses}
           loading="lazy"
         />

@@ -7,6 +7,7 @@ import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
 import React from 'react'
 import { Heart, Share } from 'lucide-react'
+import SEO from '../components/SEO'
 
 /* ------------------------------
    Linkify helper (same as card)
@@ -181,6 +182,13 @@ export default function CommunityPostPage() {
 
   return (
     <article className="w-full min-h-screen bg-slate-50 dark:bg-slate-950 pb-12">
+      <SEO 
+        title={post.title} 
+        description={post.content ? post.content.substring(0, 150) + '...' : 'Read this post on Rations Community'}
+        canonicalUrl={`/community/${post._id}`}
+        ogImage={featuredMedia?.url || undefined}
+        ogType="article"
+      />
       
       {/* Featured Media (Immersive Full Bleed Theater Mode) */}
       {featuredMedia && (
@@ -225,18 +233,8 @@ export default function CommunityPostPage() {
         {/* Author & Actions Bar (YouTube Style) */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-10 pb-8 border-b border-slate-200 dark:border-slate-800">
           
-          <div className="flex items-center gap-4">
-            <div className="shrink-0">
-              <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-full bg-ration-yellow flex items-center justify-center text-ration-dark font-extrabold text-lg shadow-sm">
-                {author.charAt(0).toUpperCase()}
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-lg text-[#0C1E22] dark:text-white leading-tight">{author}</span>
-              <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">
-                <span>{dateString}</span>
-              </div>
-            </div>
+          <div className="flex items-center text-sm text-slate-500 dark:text-slate-400 font-medium">
+            <span>{dateString}</span>
           </div>
 
           <div className="flex items-center gap-3">

@@ -53,7 +53,8 @@ export default function CartDrawer({ open, onClose, items = [] }: any) {
                     {i.menuItem.imageUrl && (
                       <img
                         src={i.menuItem.imageUrl}
-                        alt={i.menuItem.name}
+                        alt={`Rations ${i.menuItem.name}`}
+                        loading="lazy"
                         className="h-10 w-10 sm:h-14 sm:w-14 object-cover rounded shrink-0"
                       />
                     )}

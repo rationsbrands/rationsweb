@@ -55,7 +55,8 @@ export default function MenuItemCard({ item }: any) {
       {item.imageUrl && (
         <img
           src={item.imageUrl}
-          alt={item.name}
+          alt={`Rations ${item.name}`}
+          loading="lazy"
           className="h-28 sm:h-40 w-full object-cover"
         />
       )}

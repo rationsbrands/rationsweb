@@ -3,6 +3,7 @@ import { useCart } from '../context/CartContext'
 import api from '../api/api'
 import { SITE, buildWhatsappOrderMessage } from '../config/site'
 import { useNavigate, useLocation } from 'react-router-dom'
+import SEO from '../components/SEO'
 
 export default function CheckoutPage() {
   const { items, updateQuantity, removeFromCart, updateSauce, total, clearCart } = useCart()
@@ -121,6 +122,11 @@ export default function CheckoutPage() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <SEO 
+        title="Checkout" 
+        description="Checkout your Rations order securely."
+        canonicalUrl="/checkout"
+      />
       <div className="space-y-4">
         <h1 className="text-lg sm:text-xl font-semibold">Checkout</h1>
 

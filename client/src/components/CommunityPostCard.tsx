@@ -262,14 +262,9 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
 
         {/* Footer: Author & Actions */}
         <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 mt-2">
-          {/* Author */}
+          {/* Date */}
           <div className="flex items-center gap-2.5">
-            <div className="h-8 w-8 rounded-full bg-ration-yellow/20 flex items-center justify-center text-ration-dark font-bold text-xs shrink-0">
-              {author.charAt(0).toUpperCase()}
-            </div>
-            <div className="flex flex-col">
-              <span className="text-[13px] font-bold text-[#0C1E22] dark:text-white leading-none">{author}</span>
-            </div>
+            <span className="text-[13px] font-bold text-slate-500 dark:text-slate-400 leading-none">{when} ago</span>
           </div>
 
           {/* Actions */}

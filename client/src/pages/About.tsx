@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom'
+import SEO from '../components/SEO'
 
 export default function About() {
   return (
     <main className="min-h-screen text-ration-dark">
+      <SEO 
+        title="About Us" 
+        description="Wholesome, affordable meals that celebrate local flavor and bring communities together. Learn more about Rations and our mission."
+        canonicalUrl="/about"
+      />
       <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-6 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-ration-dark via-black to-ration-dark" />
         <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-ration-yellow/30 blur-3xl" />

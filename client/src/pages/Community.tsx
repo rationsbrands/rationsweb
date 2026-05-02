@@ -4,6 +4,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import api from '../api/api'
 import { SITE } from '../config/site'
 import CommunityPostCard from '../components/CommunityPostCard'
+import SEO from '../components/SEO'
 
 export default function Community({ embed = false }) {
   const [posts, setPosts] = useState<any[]>([])
@@ -53,6 +54,11 @@ export default function Community({ embed = false }) {
 
   return (
     <div className="space-y-6 pb-20">
+      <SEO 
+        title="Community" 
+        description="Join the Rations community. Read stories, see updates, and connect with us."
+        canonicalUrl="/community"
+      />
     <section className="relative overflow-hidden bg-gradient-to-b from-white dark:from-slate-900 to-gray-50 dark:to-slate-950 py-8 sm:py-20">
       <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-[#FDCD2F]/20 blur-3xl -z-10" />
       <div className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-[#0C1E22]/10 blur-3xl -z-10" />

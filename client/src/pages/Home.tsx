@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import Button from '../shared/ui/Button'
 import Menu from './Menu'
 import Community from './Community'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 import heroBg from '../assets/background2-optimized-CjkZWacr.jpg'
 import gallery1 from '../assets/1-B1FmfQ8l.jpeg'
 import gallery2 from '../assets/2-optimized-BJgNKdQB.jpg'
@@ -15,14 +17,20 @@ const whyRations = [
 ]
 
 const gallery = [
-  { src: gallery1, alt: 'Fresh ingredients prepared' },
-  { src: gallery2, alt: 'Signature dish plating' },
-  { src: gallery3, alt: 'Community moments' },
+  { src: gallery1, alt: 'Fresh ingredients prepared at Rations' },
+  { src: gallery2, alt: 'Signature Rations dish plating' },
+  { src: gallery3, alt: 'Rations community moments' },
 ]
 
 export default function Home() {
   return (
     <div className="space-y-8 sm:space-y-12 md:space-y-16 pb-8 sm:pb-12">
+      <SEO 
+        title="Home" 
+        description="Experience the best meals, made with love and fresh ingredients just for you at Rations. Food, culture & community in every bite."
+        canonicalUrl="/"
+      />
+      <StructuredData />
       <section className="relative w-full">
         <div
           className="absolute inset-0 -z-10 bg-cover bg-center"

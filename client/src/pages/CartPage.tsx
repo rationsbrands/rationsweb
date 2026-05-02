@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { SITE, buildWhatsappOrderMessage } from '../config/site'
+import SEO from '../components/SEO'
 
 export default function CartPage() {
   const { items, updateQuantity, removeFromCart, updateSauce, total } = useCart()
@@ -13,6 +14,11 @@ export default function CartPage() {
 
   return (
     <div className="space-y-2 sm:space-y-4">
+      <SEO 
+        title="Your Cart" 
+        description="Review your Rations order before checkout."
+        canonicalUrl="/cart"
+      />
       <h1 className="text-lg sm:text-xl font-semibold px-1">Your cart</h1>
 
       {items.length === 0 ? (
