@@ -9,9 +9,9 @@ interface SEOProps {
   ogType?: 'website' | 'article';
 }
 
-export default function SEO({ 
-  title, 
-  description, 
+export default function SEO({
+  title,
+  description,
   canonicalUrl = 'https://rationsfood.com',
   ogImage = '/logo.png',
   ogType = 'website'
@@ -25,7 +25,9 @@ export default function SEO({
       {/* Primary Meta Tags */}
       <title>{siteTitle}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content="rations, rations food, rationsfood, rations.food, rations brands, fast food, QSR" />
+      <meta name="author" content="Rations Brands Limited" />
+      <meta name="robots" content="index, follow" />
+      <meta name="keywords" content="rations, rations food, rations.food, rationsfood, rations brands, rations brands limited, fast food, qsr, affordable food, order food online, hot meals, fresh fast food, quick service restaurant, best fast food, food delivery" />
       <link rel="canonical" href={fullCanonicalUrl} />
 
       {/* Open Graph / Facebook */}

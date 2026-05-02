@@ -6,10 +6,30 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "FoodEstablishment",
     "name": "Rations",
+    "alternateName": ["Rations Food", "RationsFood", "Rations Brands", "Rations Brands Limited"],
     "url": "https://rationsfood.com",
-    "description": "Fast Food Done Right. Rations Brands Limited.",
+    "description": "Hot food, ready when you are. Rations is a fast growing QSR brand serving fresh, affordable meals made to order.",
     "servesCuisine": "Fast Food",
-    "image": "https://rationsfood.com/logo.png"
+    "priceRange": "₦",
+    "telephone": "+2349122058888",
+    "email": "info@rationsfood.com",
+    "image": "https://rationsfood.com/logo.png",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "10:00",
+        "closes": "19:00"
+      }
+    ],
+    "sameAs": [
+      "https://www.tiktok.com/@rations.food",
+      "https://instagram.com/rations.food",
+      "https://facebook.com/rations.food",
+      "https://youtube.com/@rationsfood",
+      "https://x.com/rationsfood",
+      "https://wa.me/2349122058888"
+    ]
   };
 
   const webSite = {

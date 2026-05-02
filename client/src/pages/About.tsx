@@ -4,9 +4,9 @@ import SEO from '../components/SEO'
 export default function About() {
   return (
     <main className="min-h-screen text-ration-dark">
-      <SEO 
-        title="About Us" 
-        description="Wholesome, affordable meals that celebrate local flavor and bring communities together. Learn more about Rations and our mission."
+      <SEO
+        title="About Us"
+        description="Rations Brands Limited — a fast-growing QSR food brand. Real ingredients, real speed, real community. This is our story."
         canonicalUrl="/about"
       />
       <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-6 overflow-hidden">
@@ -18,10 +18,10 @@ export default function About() {
         </div>
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-24 text-center">
           <h1 className="mt-6 text-2xl sm:text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
-            About <span className="text-ration-yellow">Rations</span>
+            Food that delivers on its promise.
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-lg text-white/85">
-            Wholesome, affordable meals that celebrate local flavor and bring communities together.
+            We make food worth coming back for. That's the whole idea.
           </p>
         </div>
       </section>
@@ -29,21 +29,31 @@ export default function About() {
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-8 sm:py-16">
         <div className="mx-auto max-w-4xl text-center">
           <p className="text-sm sm:text-lg leading-relaxed text-gray-800 dark:text-gray-200">
-            At <span className="font-semibold text-ration-dark">Rations</span>, we believe food is more than fuel, it's culture, connection, and community.
-            Our mission is simple: make wholesome, affordable, and accessible meals part of everyday life while celebrating the richness of local flavors.
+            Rations exists because fast food lost the plot. Somewhere between cost cutting and scale, the food stopped being good. We're fixing that. Fresh ingredients, focused menu, no shortcuts, just food that actually delivers on what it promises.
           </p>
           <p className="mt-4 sm:mt-6 text-sm sm:text-lg leading-relaxed text-gray-800 dark:text-gray-200">
-            We're not just building a food brand, we're building a movement. From sourcing quality ingredients to creating meals for modern lifestyles,
-            everything we do is guided by our core values.
+            We are Rations Brands Limited. A fast growing QSR company building a food brand that people actually trust. We source real ingredients, keep our menu focused, and run a tight operation. No fluff. No filler. Just good food at the right price.
           </p>
         </div>
 
         <div className="mt-8 sm:mt-14 rounded-2xl border border-gray-100 dark:border-gray-800 bg-gradient-to-r from-ration-yellow/10 to-transparent p-3 sm:p-6">
           <div className="grid items-center gap-3 sm:gap-6 md:grid-cols-3">
             {[
-              { label: 'Our Promise', title: 'Transparent Ingredients', desc: 'Honest sourcing, and recipes you can trust.' },
-              { label: 'Our Impact', title: 'Community at Heart', desc: 'We partner with local producers and give back to the neighborhoods we serve.' },
-              { label: 'Our Flavor', title: 'Rooted in Culture', desc: 'Authentic tastes reimagined for today, comforting, vibrant, and fresh.' },
+              {
+                label: 'Our Promise',
+                title: 'Quality Over Everything',
+                desc: 'Every item on the menu earns its spot. If it is not good enough, it does not make the cut.'
+              },
+              {
+                label: 'Our Impact',
+                title: 'Community at Heart',
+                desc: 'We serve the people around us first. Every location we open, we take that community seriously.'
+              },
+              {
+                label: 'Our Standard',
+                title: 'Speed Meets Quality',
+                desc: 'Fast food does not mean cheap food. Speed and quality can coexist, we prove it daily.'
+              },
             ].map((item) => (
               <div key={item.title} className="text-center md:text-left">
                 <div className="text-xs sm:text-sm font-medium text-ration-dark/70">{item.label}</div>

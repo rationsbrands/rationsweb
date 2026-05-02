@@ -11,7 +11,7 @@ export const SITE = {
     { name: 'WhatsApp', url: 'https://wa.me/2349122058888' },
   ],
   contacts: {
-    email: 'rations.ng@gmail.com',
+    email: 'info@rationsfood.com',
     phone: '+2349122058888',
     whatsapp: 'https://wa.me/2349122058888',
     location: 'Rations, Plot 123, Railway junction, Idu Industrial District, Abuja 900001, Federal Capital Territory',

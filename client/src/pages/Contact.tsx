@@ -10,27 +10,26 @@ export default function Contact() {
 
   return (
     <section className="bg-[#F9FAFB] dark:bg-slate-950 py-6 sm:py-10">
-      <SEO 
-        title="Contact Us" 
-        description="Get in touch with Rations. Reach out by email, phone, WhatsApp, or visit our location."
+      <SEO
+        title="Contact Us"
+        description="Contact Rations. Order via WhatsApp, call us, or send an email. We respond fast just like our food."
         canonicalUrl="/contact"
       />
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-  {/* Page Header */}
+        {/* Page Header */}
         <h1 className="text-2xl sm:text-4xl font-extrabold text-center text-ration-dark dark:text-white mb-6 sm:mb-14">
-         Contact Us
+          Talk to Us
         </h1>
         <div className="grid md:grid-cols-2 gap-6 sm:gap-10 items-center">
-         {/* Contact Info Card */}
+          {/* Contact Info Card */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl p-3 sm:p-8 space-y-4 sm:space-y-8 shadow-sm hover:shadow-lg transition-shadow">
             <h2 className="text-lg sm:text-2xl font-bold text-ration-dark dark:text-white">
-            We’d Love to Hear from You
+              We're easy to reach.
             </h2>
             <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-             Reach out by email, phone, WhatsApp, or visit our
-              location. We’ll get back to you as soon as possible.
+              Whether you want to place an order, give feedback, or just say Hi, pick the channel that works for you. We actually respond.
             </p>
-           {/* Email */}
+            {/* Email */}
             <div className="space-y-1">
               <h3 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                 Email
@@ -39,10 +38,10 @@ export default function Contact() {
                 href={`mailto:${SITE.contacts.email}`}
                 className="text-ration-dark dark:text-white font-medium hover:text-ration-yellow dark:hover:text-ration-yellow transition-colors"
               >
-              {SITE.contacts.email}
+                {SITE.contacts.email}
               </a>
             </div>
-           {/* Phone */}
+            {/* Phone */}
             <div className="space-y-1">
               <h3 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                 Phone
@@ -51,7 +50,7 @@ export default function Contact() {
                 href={`tel:${SITE.contacts.phone}`}
                 className="text-ration-dark dark:text-white font-medium hover:text-ration-yellow dark:hover:text-ration-yellow transition-colors"
               >
-            {SITE.contacts.phone}
+                {SITE.contacts.phone}
               </a>
             </div>
             {/* WhatsApp */}
@@ -65,7 +64,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-lg bg-ration-green px-6 py-3 min-h-[44px] text-white font-medium hover:bg-ration-green-hover transition-colors"
               >
-               Chat on WhatsApp
+                Chat on WhatsApp
               </a>
             </div>
             {/* Location */}

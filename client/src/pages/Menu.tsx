@@ -57,8 +57,8 @@ export default function Menu({ embed = false }: any) {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex -ml-4 py-4">
           {menuItems.slice(0, 8).map((item: any, index) => (
-            <div 
-              key={item._id} 
+            <div
+              key={item._id}
               className="flex-[0_0_85%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] min-w-0 pl-4"
             >
               <div className="h-full animate-slide-up" style={{ animationDelay: `${index * 150}ms` }}>
@@ -74,13 +74,13 @@ export default function Menu({ embed = false }: any) {
   // FULL MENU PAGE
   return (
     <div>
-      <SEO 
-        title="Menu" 
-        description="Explore the Rations menu. Delicious, affordable, and fresh fast food."
+      <SEO
+        title="Menu"
+        description="Browse the full Rations menu. Hot, fresh, affordable fast food made to order. Find your go to meal and order in seconds."
         canonicalUrl="/menu"
       />
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4">
-        <h1 className="text-2xl font-bold">Menu</h1>
+        <h1 className="text-2xl font-bold">Our Menu</h1>
         <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
           {/* Search */}
           <div className="relative w-full sm:w-64">

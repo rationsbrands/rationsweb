@@ -10,10 +10,22 @@ import gallery2 from '../assets/2-optimized-BJgNKdQB.jpg'
 import gallery3 from '../assets/3-optimized-dofIgniE.jpg'
 
 const whyRations = [
-  { title: 'Quality Ingredients', description: 'We use only the freshest, locally-sourced ingredients.' },
-  { title: 'Incredibly Fast', description: 'Your delicious meal is ready in minutes, never compromising on taste.' },
-  { title: 'Community Focused', description: 'We are proud to be a part of and serve the Abuja community.' },
-  { title: 'Convenient', description: 'Easy to order, easy to enjoy. Perfect for your busy lifestyle.' }
+  {
+    title: 'Fresh. Every time.',
+    description: "No reheated shortcuts. Every meal is prepared to order with ingredients we'd eat ourselves."
+  },
+  {
+    title: 'Ready in minutes',
+    description: 'Fast food that is actually fast. Your order moves from kitchen to hands without the wait.'
+  },
+  {
+    title: 'Priced for real life',
+    description: 'Good food should not be a luxury. Rations is built for students, workers, and everyday people.'
+  },
+  {
+    title: 'Come back tomorrow',
+    description: 'Our menu is designed to become your go to. Not just a one time try a daily habit.'
+  }
 ]
 
 const gallery = [
@@ -25,9 +37,9 @@ const gallery = [
 export default function Home() {
   return (
     <div className="space-y-8 sm:space-y-12 md:space-y-16 pb-8 sm:pb-12">
-      <SEO 
-        title="Home" 
-        description="Experience the best meals, made with love and fresh ingredients just for you at Rations. Food, culture & community in every bite."
+      <SEO
+        title="Fast Food Done Right"
+        description="Rations is a fast food brand for people who want real meals, not compromises. Hot food, ready when you are. Order now at rationsfood.com."
         canonicalUrl="/"
       />
       <StructuredData />
@@ -40,10 +52,10 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-black/50" />
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:py-20 md:py-28 text-center text-white">
           <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold tracking-tight animate-slide-up">
-            Food, culture & community in every bite.
+            Hot food, ready when you are.
           </h1>
           <p className="mt-3 sm:mt-4 text-sm sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto animate-slide-up animate-delay-1">
-            Experience the best meals, made with love and fresh ingredients just for you.
+            Real meals. No compromises. Order in seconds, eat in minutes.
           </p>
           <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
             <Link to="/menu" className="w-full sm:w-auto">
@@ -58,10 +70,9 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="grid items-center gap-6 sm:gap-10 md:grid-cols-2">
           <div>
-            <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight">About Rations</h2>
+            <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight">We built Rations because fast food should actually taste good.</h2>
             <p className="mt-3 sm:mt-4 text-sm sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              Food is more than fuel, it's connection. Rations is a growing community dedicated to real food, healthy living, and celebrating local flavors.
-              We keep it simple, affordable, and nourishing for everyone.
+              Rations is a QSR brand built on one principle, you should not have to choose between speed and quality. Every item on our menu is made fresh, priced fairly, and ready before you can change your mind.
             </p>
             <div className="mt-4 sm:mt-6">
               <Link
@@ -100,7 +111,7 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 md:px-6 animate-slide-up">
-        <h2 className="text-xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">Our Popular Dishes</h2>
+        <h2 className="text-xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">What people are ordering right now</h2>
         <div className="max-w-5xl mx-auto">
           <Menu embed />
         </div>
@@ -113,15 +124,15 @@ export default function Home() {
 
       <section className="mx-auto max-w-6xl px-4 md:px-6 space-y-8 sm:space-y-10 animate-slide-up animate-delay-2">
         <div className="text-center bg-ration-dark rounded-lg p-6 sm:p-8 shadow-md">
-          <h2 className="text-xl sm:text-3xl text-white font-bold mb-3 sm:mb-4">Join Our Community</h2>
+          <h2 className="text-xl sm:text-3xl text-white font-bold mb-3 sm:mb-4">Rations is bigger than food.</h2>
           <p className="text-sm sm:text-lg text-gray-300 mb-4 sm:mb-6">
-            See what’s happening, from events to special announcements.
+            Follow what's happening. New drops, special events, announcements, and the people behind every meal.
           </p>
           <Link
             to="/community"
             className="inline-block bg-ration-yellow text-ration-dark font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-lg text-sm sm:text-base hover:bg-ration-yellow-hover transition duration-300"
           >
-            Community Updates
+            Join the Community
           </Link>
         </div>
 
