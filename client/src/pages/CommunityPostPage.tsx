@@ -178,7 +178,6 @@ export default function CommunityPostPage() {
   })
 
   const featuredMedia = mediaList.length > 0 ? mediaList[0] : null
-  const otherMedia = mediaList.slice(1)
 
   return (
     <article className="w-full min-h-screen bg-slate-50 dark:bg-slate-950 pb-12">
@@ -263,23 +262,6 @@ export default function CommunityPostPage() {
         <div className="prose prose-lg dark:prose-invert max-w-none text-[18px] sm:text-[19px] leading-[1.8] text-slate-800 dark:text-slate-200 whitespace-pre-wrap break-words mb-12">
           {linkify(post.content || '')}
         </div>
-
-        {/* Other Media Grid (if any) */}
-        {otherMedia.length > 0 && (
-          <div className="mb-12 space-y-6">
-            <h3 className="text-xl font-bold text-[#0C1E22] dark:text-white mb-4">More Media</h3>
-            {otherMedia.map((media, idx) => (
-              <div key={idx} className="rounded-2xl overflow-hidden shadow-sm bg-black">
-                <MediaRenderer
-                  url={media.url}
-                  title={post.title}
-                  variant="detail"
-                  hideFallbackLink={true}
-                />
-              </div>
-            ))}
-          </div>
-        )}
 
         {/* External Link Callout */}
         {post.externalLinkUrl && (

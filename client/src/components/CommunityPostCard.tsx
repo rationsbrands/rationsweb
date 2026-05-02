@@ -176,7 +176,6 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
 
   // Only take the first media for the list view header to keep it clean.
   const featuredMedia = mediaList.length > 0 ? mediaList[0] : null
-  const otherMedia = mediaList.slice(1)
 
   return (
     <Link
@@ -225,22 +224,6 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
         <p className="text-[15px] text-slate-600 dark:text-slate-300 line-clamp-3 mb-4 leading-relaxed whitespace-pre-line">
           {linkify(bodyText)}
         </p>
-
-        {/* Other Media (if any) */}
-        {otherMedia.length > 0 && (
-          <div className="mb-4 space-y-3">
-            {otherMedia.map((media, idx) => (
-              <div key={idx} className="rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
-                <MediaRenderer
-                  url={media.url}
-                  title={post.title}
-                  variant="list"
-                  hideFallbackLink={true}
-                />
-              </div>
-            ))}
-          </div>
-        )}
 
         {/* External Link */}
         {post.externalLinkUrl && (
