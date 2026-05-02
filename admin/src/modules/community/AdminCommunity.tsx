@@ -19,6 +19,9 @@ export default function AdminCommunity() {
     mediaTitle: '',
     externalLinkUrl: '',
     externalLinkTitle: '',
+    ctaEnabled: false,
+    ctaLink: '',
+    ctaText: '',
     alertEnabled: false,
     alertStart: '',
     alertEnd: '',
@@ -110,7 +113,7 @@ export default function AdminCommunity() {
       await api.post('/admin/community', payload)
       setNotice('Post created successfully')
     }
-    setForm({ title: '', content: '', tag: '', imageUrl: '', mediaUrl: '', mediaTitle: '', externalLinkUrl: '', externalLinkTitle: '', alertEnabled: false, alertStart: '', alertEnd: '', isInstagram: false, __newTag: '' })
+    setForm({ title: '', content: '', tag: '', imageUrl: '', mediaUrl: '', mediaTitle: '', externalLinkUrl: '', externalLinkTitle: '', ctaEnabled: false, ctaLink: '', ctaText: '', alertEnabled: false, alertStart: '', alertEnd: '', isInstagram: false, __newTag: '' })
     setEditingId(null)
     load()
   }
@@ -126,6 +129,9 @@ export default function AdminCommunity() {
       mediaTitle: post.mediaTitle || '',
       externalLinkUrl: post.externalLinkUrl || '',
       externalLinkTitle: post.externalLinkTitle || '',
+      ctaEnabled: Boolean(post.ctaEnabled),
+      ctaLink: post.ctaLink || '',
+      ctaText: post.ctaText || '',
       alertEnabled: Boolean(post.alertEnabled),
       alertStart: post.alertStart ? new Date(post.alertStart).toISOString() : '',
       alertEnd: post.alertEnd ? new Date(post.alertEnd).toISOString() : '',
@@ -136,7 +142,7 @@ export default function AdminCommunity() {
 
   const cancelEdit = () => {
     setEditingId(null)
-    setForm({ title: '', content: '', tag: '', imageUrl: '', mediaUrl: '', mediaTitle: '', externalLinkUrl: '', externalLinkTitle: '', alertEnabled: false, alertStart: '', alertEnd: '', isInstagram: false, __newTag: '' })
+    setForm({ title: '', content: '', tag: '', imageUrl: '', mediaUrl: '', mediaTitle: '', externalLinkUrl: '', externalLinkTitle: '', ctaEnabled: false, ctaLink: '', ctaText: '', alertEnabled: false, alertStart: '', alertEnd: '', isInstagram: false, __newTag: '' })
     setErrors({ mediaUrl: '', externalLinkUrl: '' })
   }
 
@@ -240,6 +246,19 @@ export default function AdminCommunity() {
         </label>
         <FormInput label="External link title/caption (optional)" name="externalLinkTitle" value={form.externalLinkTitle} onChange={handleChange} />
         
+        <div className="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800/50 space-y-3">
+          <label className="flex items-center gap-2 text-sm font-bold text-slate-800 dark:text-slate-200">
+            <input type="checkbox" name="ctaEnabled" checked={Boolean(form.ctaEnabled)} onChange={handleChange} />
+            Enable Call to Action Button
+          </label>
+          {form.ctaEnabled && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+              <FormInput label="Button Text" name="ctaText" value={form.ctaText} onChange={handleChange} placeholder="e.g. Learn More" />
+              <FormInput label="Button Link" name="ctaLink" value={form.ctaLink} onChange={handleChange} placeholder="https://..." />
+            </div>
+          )}
+        </div>
+
         <label className="flex items-center gap-2 text-sm p-2 bg-pink-50 rounded border border-pink-100">
           <input type="checkbox" name="isInstagram" checked={Boolean(form.isInstagram)} onChange={handleChange} />
           <span className="text-pink-700 font-medium">Is Instagram Post?</span>

@@ -26,8 +26,7 @@ const formatRelativeTime = (d: string | Date) => {
 /* ------------------------------
    Linkify helper (NO UI change)
 --------------------------------*/
-const URL_REGEX =
-  /((https?:\/\/[^\s]+)|(www\.[^\s]+)|([a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\/[^\s]*)?))/g
+const COMBINED_REGEX = /\[([^\]]+)\]\(([^)]+)\)|((?:https?:\/\/[^\s]+)|(?:www\.[^\s]+)|(?:[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(?:\/[^\s]*)?))/g;
 
 const linkify = (text: string) => {
   if (!text) return text
@@ -35,7 +34,7 @@ const linkify = (text: string) => {
   const parts: React.ReactNode[] = []
   let lastIndex = 0
 
-  for (const match of text.matchAll(URL_REGEX)) {
+  for (const match of text.matchAll(COMBINED_REGEX)) {
     const index = match.index ?? 0
     const raw = match[0]
 
@@ -43,24 +42,45 @@ const linkify = (text: string) => {
       parts.push(text.slice(lastIndex, index))
     }
 
-    const href =
-      raw.startsWith('http://') || raw.startsWith('https://')
-        ? raw
-        : `https://${raw}`
+    if (match[1] && match[2]) {
+      // Markdown link
+      const linkText = match[1]
+      const rawHref = match[2]
+      const href = rawHref.startsWith('http://') || rawHref.startsWith('https://') || rawHref.startsWith('mailto:') 
+        ? rawHref : `https://${rawHref}`
 
-    parts.push(
-      <a
-        key={`${index}-${raw}`}
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-ration-green hover:underline break-words"
-        onClick={(e) => e.stopPropagation()}
-        onMouseDown={(e) => e.stopPropagation()}
-      >
-        {raw}
-      </a>
-    )
+      parts.push(
+        <a
+          key={`${index}-${rawHref}`}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-ration-green hover:underline break-words font-semibold"
+          onClick={(e) => e.stopPropagation()}
+          onMouseDown={(e) => e.stopPropagation()}
+        >
+          {linkText}
+        </a>
+      )
+    } else {
+      // Plain URL
+      const href = raw.startsWith('http://') || raw.startsWith('https://')
+        ? raw : `https://${raw}`
+
+      parts.push(
+        <a
+          key={`${index}-${raw}`}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-ration-green hover:underline break-words"
+          onClick={(e) => e.stopPropagation()}
+          onMouseDown={(e) => e.stopPropagation()}
+        >
+          {raw}
+        </a>
+      )
+    }
 
     lastIndex = index + raw.length
   }
@@ -135,9 +155,16 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
     }
   }
 
-  const contentUrls = (bodyText.match(URL_REGEX) || [])
-    .map((u: string) => u.startsWith('http') ? u : `https://${u}`)
-    .filter((u: string) => parseMediaUrl(u).type !== 'link' && parseMediaUrl(u).type !== 'none')
+  const contentUrls: string[] = []
+  for (const match of (bodyText.matchAll(COMBINED_REGEX) || [])) {
+    let url = match[2] || match[0]
+    if (url) {
+      if (!url.startsWith('http') && !url.startsWith('mailto:')) url = `https://${url}`
+      if (parseMediaUrl(url).type !== 'link' && parseMediaUrl(url).type !== 'none') {
+        contentUrls.push(url)
+      }
+    }
+  }
 
   const mediaList: { url: string; isPrimary: boolean }[] = []
   if (post.mediaUrl || post.imageUrl) {
@@ -230,6 +257,22 @@ export default function CommunityPostCard({ post }: CommunityPostCardProps) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
               <span className="truncate">{post.externalLinkTitle || post.externalLinkUrl.replace(/^https?:\/\//, '')}</span>
+            </a>
+          </div>
+        )}
+
+        {/* Call to Action Button */}
+        {post.ctaEnabled && post.ctaLink && (
+          <div className="mb-4">
+            <a
+              href={post.ctaLink.startsWith('http') ? post.ctaLink : `https://${post.ctaLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full px-4 py-2.5 bg-ration-green hover:bg-ration-green/90 text-white rounded-xl transition-colors text-[14px] font-bold shadow-sm"
+              onClick={(e) => e.stopPropagation()}
+              onMouseDown={(e) => e.stopPropagation()}
+            >
+              {post.ctaText || 'Learn More'}
             </a>
           </div>
         )}

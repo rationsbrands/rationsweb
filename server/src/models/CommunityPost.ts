@@ -13,6 +13,12 @@ const communityPostSchema = new Schema(
     mediaTitle: { type: String },
     externalLinkUrl: { type: String },
     externalLinkTitle: { type: String },
+
+    // Call to Action
+    ctaEnabled: { type: Boolean, default: false },
+    ctaLink: { type: String },
+    ctaText: { type: String },
+    
     alertEnabled: { type: Boolean, default: false },
     alertStart: { type: Date },
     alertEnd: { type: Date },

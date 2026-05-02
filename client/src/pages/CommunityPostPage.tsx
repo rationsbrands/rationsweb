@@ -11,8 +11,7 @@ import { Heart, Share } from 'lucide-react'
 /* ------------------------------
    Linkify helper (same as card)
 --------------------------------*/
-const URL_REGEX =
-  /((https?:\/\/[^\s]+)|(www\.[^\s]+)|([a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\/[^\s]*)?))/g
+const COMBINED_REGEX = /\[([^\]]+)\]\(([^)]+)\)|((?:https?:\/\/[^\s]+)|(?:www\.[^\s]+)|(?:[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(?:\/[^\s]*)?))/g;
 
 const linkify = (text: string) => {
   if (!text) return text
@@ -20,7 +19,7 @@ const linkify = (text: string) => {
   const parts: React.ReactNode[] = []
   let lastIndex = 0
 
-  for (const match of text.matchAll(URL_REGEX)) {
+  for (const match of text.matchAll(COMBINED_REGEX)) {
     const index = match.index ?? 0
     const raw = match[0]
 
@@ -28,22 +27,41 @@ const linkify = (text: string) => {
       parts.push(text.slice(lastIndex, index))
     }
 
-    const href =
-      raw.startsWith('http://') || raw.startsWith('https://')
-        ? raw
-        : `https://${raw}`
+    if (match[1] && match[2]) {
+      // Markdown link
+      const linkText = match[1]
+      const rawHref = match[2]
+      const href = rawHref.startsWith('http://') || rawHref.startsWith('https://') || rawHref.startsWith('mailto:') 
+        ? rawHref : `https://${rawHref}`
 
-    parts.push(
-      <a
-        key={`${index}-${raw}`}
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-ration-green hover:underline break-words"
-      >
-        {raw}
-      </a>
-    )
+      parts.push(
+        <a
+          key={`${index}-${rawHref}`}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-ration-green hover:underline break-words font-semibold"
+        >
+          {linkText}
+        </a>
+      )
+    } else {
+      // Plain URL
+      const href = raw.startsWith('http://') || raw.startsWith('https://')
+        ? raw : `https://${raw}`
+
+      parts.push(
+        <a
+          key={`${index}-${raw}`}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-ration-green hover:underline break-words"
+        >
+          {raw}
+        </a>
+      )
+    }
 
     lastIndex = index + raw.length
   }
@@ -140,9 +158,16 @@ export default function CommunityPostPage() {
   const postDate = new Date(post.publishedAt || post.createdAt)
   const dateString = postDate.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' })
 
-  const contentUrls = ((post.content || '').match(URL_REGEX) || [])
-    .map((u: string) => u.startsWith('http') ? u : `https://${u}`)
-    .filter((u: string) => parseMediaUrl(u).type !== 'link' && parseMediaUrl(u).type !== 'none')
+  const contentUrls: string[] = []
+  for (const match of (post.content || '').matchAll(COMBINED_REGEX) || []) {
+    let url = match[2] || match[0]
+    if (url) {
+      if (!url.startsWith('http') && !url.startsWith('mailto:')) url = `https://${url}`
+      if (parseMediaUrl(url).type !== 'link' && parseMediaUrl(url).type !== 'none') {
+        contentUrls.push(url)
+      }
+    }
+  }
 
   const mediaList: { url: string; isPrimary: boolean }[] = []
   if (post.mediaUrl || post.imageUrl) {
@@ -273,6 +298,20 @@ export default function CommunityPostPage() {
               <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
+            </a>
+          </div>
+        )}
+
+        {/* Call to Action Button */}
+        {post.ctaEnabled && post.ctaLink && (
+          <div className="mb-12 flex justify-center sm:justify-start">
+            <a
+              href={post.ctaLink.startsWith('http') ? post.ctaLink : `https://${post.ctaLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-8 py-4 bg-ration-green hover:bg-ration-green/90 text-white rounded-full transition-colors text-[16px] font-bold shadow-md"
+            >
+              {post.ctaText || 'Learn More'}
             </a>
           </div>
         )}
