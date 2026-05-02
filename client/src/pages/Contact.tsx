@@ -27,7 +27,7 @@ export default function Contact() {
               We're easy to reach.
             </h2>
             <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-              Whether you want to place an order, give feedback, or just say Hi, pick the channel that works for you. We actually respond.
+              Whether you want to place an order, give feedback, or just say Hi. Pick the channel that works for you. We actually respond.
             </p>
             {/* Email */}
             <div className="space-y-1">
